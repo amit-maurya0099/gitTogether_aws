@@ -1,0 +1,64 @@
+const User = require("../models/user_model");
+const bcrypt = require("bcrypt");
+const sendToken = require("../utils/sendToken");
+const { validateEditProfileData } = require("../utils/validation");
+
+const getProfile = async (req, res) => {
+    try {
+       const loggedInUser=req.user;
+      
+      if (!loggedInUser) {
+       return res.status(401).json({ message: "Unauthorised Access" });
+      }
+  
+     return res.status(200).json({ message: "Retrieval of profile successfull", loggedInUser });
+    } catch (error) {
+      res.status(404).json({ message: error.message });
+    }
+  };
+  const updateProfile = async (req, res) => {
+    try {
+      if(!validateEditProfileData(req)){
+        return res.status(400).json({message:"Invalid Edit Request"})
+      }
+      const { id } = req.params;
+      const data = req.body;
+      const loggedInUser=await User.findById(id);
+      Object.keys(req.body).forEach((key)=>loggedInUser[key]=req.body[key]);
+      await loggedInUser.save();
+      
+     
+      res.status(200).json({ message: "Profile updated successfully",data:loggedInUser });
+    } catch (err) {
+      res.status(404).json({ message: err.message });
+    }
+  };
+  const forgotPassword = async (req, res) => {
+    try {
+      const { id } = req.params;
+      
+      const { newPassword, confirmPassword } = req.body;
+      if(!newPassword || !confirmPassword){
+          return res.status(400).json("Please fill all the details");
+      }
+      
+  
+      if (newPassword !== confirmPassword) {
+       return  res.status(400).json({ message: "Password does'nt match" });
+      }
+      if(newPassword.length<8 || confirmPassword.length<8){
+          return res.status(400).json({message:"Password must be of minimum 8 characters"})
+      }
+      const hashedPassword = await bcrypt.hash(newPassword, 10);
+      const user = await User.findByIdAndUpdate(id, { password: hashedPassword });
+      if (user) {
+        return res.status(200).json({ message: "Password changed successfully" });
+      }
+        return res.status(404).json({ message: "Password could not changed " });
+    } catch (error) {
+      res.status(400).json({ message: "Password could'nt update" });
+    }
+  };
+
+  
+module.exports = {   getProfile, updateProfile, forgotPassword};
