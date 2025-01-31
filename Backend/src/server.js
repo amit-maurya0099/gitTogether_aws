@@ -5,15 +5,22 @@ const profileRoutes= require("./routers/profileRoutes");
 const authRoutes= require("./routers/authRoutes");
 const connectionRequestRoutes= require("./routers/connectionRequestRoutes");
 const cookieParser = require('cookie-parser');
+const fileupload=require('express-fileupload');
 const app=express();
+const cloudinary=require('cloudinary')
+
 require('dotenv').config()
 
 app.use(cookieParser())
 app.use(express.json());
+app.use(fileupload());
 app.use("/api/auth",authRoutes)
 app.use("/api/profile",profileRoutes)
 app.use("/api/user",userRoutes);
 app.use("/api/connection",connectionRequestRoutes);
+
+
+
 
 
 connectDB().then(()=>{
@@ -22,4 +29,10 @@ connectDB().then(()=>{
     })
 }).catch((err)=>{
     console.error("Database connnection unsuccessfull");
+})
+
+cloudinary.config({
+    cloud_name:process.env.CLOUDINARY_CLOUD_NAME,
+    api_key:process.env.CLOUDINARY_API_KEY,
+    api_secret:process.env.CLOUDINARY_API_SECRET
 })

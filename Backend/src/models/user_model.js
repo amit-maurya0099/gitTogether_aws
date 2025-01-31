@@ -38,9 +38,22 @@ const userSchema=new mongoose.Schema({
         default:"This is default description",
         maxLength:100
     },
-    photoUrl:{
+    avatar:{
+        public_id:{
+            type:String
+        },
+        url:{
+            
+            type:String,
+        }
+    },
+    githubUrl:{
         type:String,
-        default:"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+        default:""
+    },
+    linkedInUrl:{
+        type:String,
+        default:""
     }
 
 

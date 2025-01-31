@@ -4,9 +4,13 @@ const {validateSignUpData} = require("../utils/validation");
 const validator = require("validator");
 const bcrypt = require("bcrypt");
 const sendToken = require("../utils/sendToken");
+const cloudinary=require('cloudinary');
 
 const register = async (req, res) => {
-  const { firstName, lastName, email, password, about, skills } = req.body;
+  const { firstName, lastName, email, password, about, skills,githubUrl,linkedInUrl } = req.body;
+  
+  let profilePic=req.body.avatar;
+  
   try {
     validateSignUpData(req);
     const isExist = await User.findOne({ email });
@@ -14,6 +18,9 @@ const register = async (req, res) => {
     if (isExist) {
       throw new Error("User already exist with this email");
     }
+
+    const myCloud=await cloudinary.v2.uploader.upload(profilePic);
+    console.log(myCloud);
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await User.create({
       firstName,
@@ -22,6 +29,12 @@ const register = async (req, res) => {
       password: hashedPassword,
       skills,
       about,
+      githubUrl,
+      linkedInUrl,
+      avatar:{
+        public_id:myCloud.public_id,
+        url:myCloud.secure_url
+      }
     });
     sendToken(user, res, 200, "User Registered Successfully");
   } catch (error) {
