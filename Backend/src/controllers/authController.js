@@ -20,7 +20,6 @@ const register = async (req, res) => {
     }
 
     const myCloud=await cloudinary.v2.uploader.upload(profilePic);
-    console.log(myCloud);
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await User.create({
       firstName,
@@ -42,9 +41,11 @@ const register = async (req, res) => {
   }
 };
 const login = async (req, res) => {
+  
   const { email, password } = req.body;
   try {
     const validEmail = validator.isEmail(email);
+   
     if (!email || !password || !validEmail) {
       throw new Error("Invalid email or password");
     }
