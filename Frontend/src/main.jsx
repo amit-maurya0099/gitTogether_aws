@@ -4,12 +4,16 @@ import './index.css'
 import App from './App.jsx'
 import {BrowserRouter} from "react-router-dom"
 import { ToastContainer } from 'react-toastify';
+import appStore from './Utils/appStore.jsx'
+import {Provider} from "react-redux"
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <Provider store={appStore} >
     <BrowserRouter>
         <App />
         <ToastContainer/>
     </BrowserRouter>
+    </Provider>
   </StrictMode>,
 )

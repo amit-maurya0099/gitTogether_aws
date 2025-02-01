@@ -2,8 +2,11 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import {toast} from 'react-toastify'
+import { useDispatch } from 'react-redux'
+import { addUser } from '../Utils/userSlice'
 const Register = ({setCurrentView}) => {
     const navigate=useNavigate();
+    const dispatch=useDispatch();
       const [user,setUser]=useState({
             firstName:"",
             lastName:"",
@@ -63,9 +66,12 @@ const Register = ({setCurrentView}) => {
     
       try {    
         const response=await axios.post("http://localhost:3000/api/auth/signup",myForm,{withCredentials: true });
-         const data=response.user;
+         const data=response.data;
          navigate('/feed');
-        toast.success(response.data.message)
+         dispatch(addUser(data.user));
+        toast.success(response.data.message);
+
+
       } catch (error) {
             console.log(error)
             toast.error(error.response.data.message)

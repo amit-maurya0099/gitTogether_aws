@@ -4,6 +4,7 @@ import HomeCard from '../components/HomeCard'
 import Login from './Login'
 import Register from './Register'
 import {motion} from "framer-motion"
+import Footer from '../components/Footer'
 const LandingPage = () => {
   const [currentView,setCurrentView]=useState('homeCard');
   const fadeInUp = {
@@ -44,8 +45,8 @@ const LandingPage = () => {
             variants={fadeInUp}
             className='w-full flex justify-center'
           ><Register setCurrentView={setCurrentView}/></motion.div>)}
-     
       </div>
+      <Footer/>
      
     </div>
   )

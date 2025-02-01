@@ -2,9 +2,12 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import {useDispatch} from "react-redux";
+import { addUser } from '../Utils/userSlice';
 
 const Login = ({setCurrentView}) => {
   const navigate=useNavigate();
+  const dispatch=useDispatch();
     const [user,setUser]=useState({
       email:"",
       password:""
@@ -27,13 +30,12 @@ const Login = ({setCurrentView}) => {
     console.log(user);
     const response=await axios.post('http://localhost:3000/api/auth/login',myForm,{withCredentials: true });
     const data=response.data;
-    console.log(response);
     navigate("/feed")
     toast.success(data.message);
-    
+     dispatch(addUser(data.user))
+      
    } catch (error) {
-    console.log(error);
-     toast.error(error.response);
+     toast.error(error.response.data.message);
    }
    }
   
