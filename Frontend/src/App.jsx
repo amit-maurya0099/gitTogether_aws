@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import {Routes,Route, useParams, useLocation} from "react-router-dom"
+import {Routes,Route, useLocation} from "react-router-dom"
 import Body from './components/Body';
 import Navbar from './components/Navbar';
 import Feed from './pages/Feed';
@@ -8,6 +8,7 @@ import { BASE_URL } from './Utils/constants';
 import { useDispatch, useSelector } from 'react-redux';
 import { addUser } from './Utils/userSlice';
 import ProtectedRoute from './Utils/ProtectedRoute';
+import Error from './components/Error';
 const App = () => {
  const location=useLocation();
  const path=location.pathname;
@@ -24,8 +25,9 @@ try {
      setIsAuthenticated(true);
 } catch (error) {
   if(error.status===401){
-    
-  }
+      console.log("Unauthorised Access")
+  }else{
+  console.log(error)}
 }
   }
   
@@ -39,6 +41,7 @@ try {
     <>
     <Navbar/>
      <Routes>
+      <Route path="/*" element={<Error/>}></Route>
       <Route path='/' element={<Body/>}></Route>
       <Route path='/feed' element={<ProtectedRoute  Children={Feed}/>}>
           
