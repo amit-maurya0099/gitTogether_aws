@@ -5,23 +5,26 @@ import axios from 'axios'
 import {useNavigate} from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux'
 import { removeUser } from '../Utils/userSlice'
+import { BASE_URL } from '../Utils/constants'
 const Navbar = () => {
   const navigate=useNavigate();
   const dispatch=useDispatch();
-  const user=useSelector((state)=>state.user)
-
-  const profileImg=user?.avatar.url || "https://static-00.iconduck.com/assets.00/user-icon-1024x1024-dtzturco.png";
+  const {user,setIsAuthenticated}=useSelector((state)=>state.user)
+  
+  const profileImg= user? user.avatar.url :"https://static-00.iconduck.com/assets.00/user-icon-1024x1024-dtzturco.png";
   const handleLogout=async()=>{
     try {
-      console.log("hello")
-      const response=await axios.post('http://localhost:3000/api/auth/logout',{},{withCredentials:true});
+     
+      const response=await axios.post(BASE_URL+'/api/auth/logout',{},{withCredentials:true});
       const data=response.data;
       toast.success(data.message)
       navigate('/');
       dispatch(removeUser())
+      setIsAuthenticated(false);
          
     } catch (error) {
-      toast.error(error.response.data.message);
+
+      toast.error(error.response?.data.message);
     }
   }
 
@@ -30,11 +33,15 @@ const Navbar = () => {
   <div className="flex-1 ">
     <img src={Logo} className=" h-10 "></img>
   </div>
-  <div className="flex gap-6 mr-6" >
+  <div className="flex gap-6 mr-6 items-center" >
     {/* <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" /> */}
-    <div className="dropdown dropdown-end">
-      <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+  { user && <p className='text-lg font-serif text-white'>Welcome, {user.firstName}</p>}
+    <div className="dropdown dropdown-end " >
+    
+      <div tabIndex={10} role="button" className="btn btn-ghost btn-circle avatar">
+       
         <div className="w-10 rounded-full ">
+           
           <img
             alt="/"
             src={profileImg }/>

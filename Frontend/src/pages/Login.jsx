@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import {useDispatch} from "react-redux";
 import { addUser } from '../Utils/userSlice';
+import { BASE_URL } from '../Utils/constants';
 
 const Login = ({setCurrentView}) => {
   const navigate=useNavigate();
@@ -27,8 +28,7 @@ const Login = ({setCurrentView}) => {
    myForm.set('email',user.email)
    myForm.set('password',user.password)
    try {
-    console.log(user);
-    const response=await axios.post('http://localhost:3000/api/auth/login',myForm,{withCredentials: true });
+    const response=await axios.post(BASE_URL+'/api/auth/login',myForm,{withCredentials: true });
     const data=response.data;
     navigate("/feed")
     toast.success(data.message);

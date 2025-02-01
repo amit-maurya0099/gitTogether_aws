@@ -4,6 +4,7 @@ import axios from 'axios'
 import {toast} from 'react-toastify'
 import { useDispatch } from 'react-redux'
 import { addUser } from '../Utils/userSlice'
+import { BASE_URL } from '../Utils/constants'
 const Register = ({setCurrentView}) => {
     const navigate=useNavigate();
     const dispatch=useDispatch();
@@ -65,7 +66,7 @@ const Register = ({setCurrentView}) => {
       myForm.set("avatar",user.avatar);
     
       try {    
-        const response=await axios.post("http://localhost:3000/api/auth/signup",myForm,{withCredentials: true });
+        const response=await axios.post(BASE_URL+"/api/auth/signup",myForm,{withCredentials: true });
          const data=response.data;
          navigate('/feed');
          dispatch(addUser(data.user));
