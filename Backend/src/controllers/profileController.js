@@ -5,13 +5,13 @@ const { validateEditProfileData } = require("../utils/validation");
 
 const getProfile = async (req, res) => {
     try {
-       const loggedInUser=req.user;
+       const user=req.user;
       
-      if (!loggedInUser) {
-       return res.status(401).json({ message: "Unauthorised Access" });
+      if (!user) {
+       throw new Error({ message: "Unauthorised Access" });
       }
   
-     return res.status(200).json({ message: "Retrieval of profile successfull", loggedInUser });
+     return res.status(200).json({ message: "Retrieval of profile successfull", user });
     } catch (error) {
       res.status(404).json({ message: error.message });
     }
