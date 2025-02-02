@@ -31,7 +31,7 @@ const Navbar = () => {
   return (
     <div className="navbar bg-[#191E24] shadow-sm sticky top-0 opacity-100 z-10">
   <div className="flex-1 ">
-    <img src={Logo} className=" h-10 "></img>
+    <img src={Logo} className=" h-8 md:h-10 "></img>
   </div>
   <div className="flex gap-6 mr-6 items-center" >
     {/* <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" /> */}

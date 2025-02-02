@@ -10,30 +10,27 @@ import { addUser } from './Utils/userSlice';
 import ProtectedRoute from './Utils/ProtectedRoute';
 import Error from './components/Error';
 const App = () => {
- const location=useLocation();
- const path=location.pathname;
+  const dispatch=useDispatch();
+  const {isAuthenticated}=useSelector((store)=>store.user)
   
- const dispatch=useDispatch();
- const {isAuthenticated,setIsAuthenticated}=useSelector((store)=>store.user)
- 
-  const fetchUser=async()=>{
-try {
-  if(isAuthenticated || path==="/") return ;
-  const response=await axios.get(BASE_URL+'/api/profile/view',{withCredentials:'include'})
-    const data=response.data;
-    dispatch(addUser(data.user));
-     setIsAuthenticated(true);
-} catch (error) {
-  if(error.status===401){
-      console.log("Unauthorised Access")
-  }else{
-  console.log(error)}
-}
-  }
-  
-  useEffect(()=>{
-    fetchUser();
-  },[])
+   const fetchUser=async()=>{
+ try {
+   if(isAuthenticated ) return ;
+   const response=await axios.get(BASE_URL+'/api/profile/view',{withCredentials:'include'})
+     const data=response.data;
+     dispatch(addUser(data.user));
+      
+ } catch (error) {
+   if(error.status===401){
+       console.log("Unauthorised Access")
+   }else{
+   console.log(error)}
+ }
+   }
+   
+   useEffect(()=>{
+     fetchUser();
+   },[])
 
 
    

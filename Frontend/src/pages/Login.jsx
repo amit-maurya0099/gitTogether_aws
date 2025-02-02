@@ -2,13 +2,15 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import {useDispatch} from "react-redux";
-import { addUser } from '../Utils/userSlice';
+import {useDispatch, useSelector} from "react-redux";
+import { addUser, setIsLoading } from '../Utils/userSlice';
 import { BASE_URL } from '../Utils/constants';
+
 
 const Login = ({setCurrentView}) => {
   const navigate=useNavigate();
   const dispatch=useDispatch();
+  const {isLoading}=useSelector((store)=>store.user)
     const [user,setUser]=useState({
       email:"",
       password:""
@@ -28,14 +30,18 @@ const Login = ({setCurrentView}) => {
    myForm.set('email',user.email)
    myForm.set('password',user.password)
    try {
+      
     const response=await axios.post(BASE_URL+'/api/auth/login',myForm,{withCredentials: true });
     const data=response.data;
     navigate("/feed")
     toast.success(data.message);
      dispatch(addUser(data.user))
+     
       
    } catch (error) {
+  
      toast.error(error.response.data.message);
+     
    }
    }
   
@@ -57,7 +63,7 @@ const Login = ({setCurrentView}) => {
         </fieldset>
        </div>
        <div className="card-actions flex justify-center w-[90%] mt-6" >
-      <button className="btn btn-primary w-full text-m " type='submit'>Submit</button>
+      <button className="btn btn-primary w-full text-m " type='submit'>{isLoading ? <Loader/>:"Submit"}</button>
     </div>
      <div> <p >Don't have Account?<span className='text-blue-400 cursor-pointer' onClick={()=>setCurrentView('registerCard')}> Please Register!</span></p></div>
       </form>

@@ -1,13 +1,17 @@
 import Lottie from 'lottie-react'
 import React from 'react'
 import homeAnimation from "../Animations/homeAnimation.json"
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import Loader from './Loader'
 const HomeCard = ({setCurrentView}) => {
+  const {isAuthenticated}=useSelector((store)=>store.user);
+  const navigate=useNavigate();
   return (
     <div className='absolute mt-6 p-6 bg-gray-900 rounded-3xl w-[90%] md:w-[40%]'>
     <div className=" flex items-center justify-center ">
  
   <div className="text-center space-y-6">
-    
     <h1 className="text-4xl font-bold">
       Welcome, Developers! 🚀
     </h1>
@@ -24,8 +28,8 @@ const HomeCard = ({setCurrentView}) => {
 
    
     <div className="flex gap-4 justify-center">
-     <button className="px-6 py-3 bg-blue-600 rounded-lg text-lg font-semibold hover:bg-blue-700 transition cursor-pointer" onClick={()=>setCurrentView('loginCard')}>
-        Get Started
+     <button className="px-6 py-3 bg-blue-600 rounded-lg text-lg font-semibold hover:bg-blue-700 transition cursor-pointer" onClick={()=>{isAuthenticated? navigate("/feed"):setCurrentView('loginCard')}}>
+        Get Started 
         </button>
         
       

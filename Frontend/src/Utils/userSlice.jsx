@@ -8,7 +8,8 @@ const userSlice=createSlice({
     name:'user',
     initialState:{
       isAuthenticated:false,
-      user:null
+      user:null,
+      isLoading:false
     },
     reducers:{
         addUser:(state,action)=>{
@@ -19,11 +20,12 @@ const userSlice=createSlice({
             state.isAuthenticated=false
             state.user=null
         },
-        setIsAuthenticated:(state,action)=>{
-            isAuthenticated=action.payload;
+        setIsLoading:(state,action)=>{
+            state.isLoading=action.payload;
         }
+       
     }
 })
 
-export const {addUser,removeUser,setIsAuthenticated}=userSlice.actions;
+export const {addUser,removeUser,setIsLoading}=userSlice.actions;
 export default userSlice.reducer;

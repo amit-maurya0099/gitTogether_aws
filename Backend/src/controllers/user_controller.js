@@ -2,7 +2,7 @@ const { set } = require("mongoose");
 const ConnectionRequest=require("../models/connection_model");
 const User = require("../models/user_model");
  
-const ConnectionUserDataString="firstName lastName skills about photoUrl"
+const ConnectionUserDataString="firstName lastName skills about avatar githubUrl linkedInUrl"
 const getConnections=async(req,res)=>{
     try {
         const loggedInUser=req.user;
