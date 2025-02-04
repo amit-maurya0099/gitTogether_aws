@@ -10,7 +10,7 @@ import { addUser } from './Utils/userSlice';
 import ProtectedRoute from './Utils/ProtectedRoute';
 import Error from './components/Error';
 import Profile from './pages/Profile';
-import EditProfile from './pages/EditProfile';
+
 const App = () => {
   const dispatch=useDispatch();
   const {isAuthenticated}=useSelector((store)=>store.user)

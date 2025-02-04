@@ -2,12 +2,14 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import {toast} from 'react-toastify'
-import { useDispatch } from 'react-redux'
-import { addUser } from '../Utils/userSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { addUser,setIsLoading } from '../Utils/userSlice'
 import { BASE_URL } from '../Utils/constants'
+import Loader from '../components/Loader'
 const Register = ({setCurrentView}) => {
     const navigate=useNavigate();
     const dispatch=useDispatch();
+    const {isLoading}=useSelector((store)=>store.user)
       const [user,setUser]=useState({
             firstName:"",
             lastName:"",
@@ -66,15 +68,17 @@ const Register = ({setCurrentView}) => {
       myForm.set("avatar",user.avatar);
     
       try {    
+            dispatch(setIsLoading(true));
         const response=await axios.post(BASE_URL+"/api/auth/signup",myForm,{withCredentials: true });
          const data=response.data;
+         dispatch(setIsLoading(false)); 
          navigate('/feed');
          dispatch(addUser(data.user));
         toast.success(response.data.message);
 
 
       } catch (error) {
-            console.log(error)
+            dispatch(setIsLoading(false)); 
             toast.error(error.response.data.message)
       }
      
@@ -83,7 +87,10 @@ const Register = ({setCurrentView}) => {
 
 
   return (
+      <>
+      {isLoading?<Loader/>:
     <div className='w-[90%] md:w-[35%] h-[70vh] mt-10 bg-[#101828] rounded-xl shadow-2xl no-scrollbar'>
+
          <h2 className='text-2xl font-bold text-center my-4 underline'>Register</h2>
          <form className=' flex flex-col gap-4 items-center justify-center' onSubmit={handleRegister}>
           <div className='flex flex-col gap-4 items-center  md:flex md:flex-row md:justify-evenly md:items-center w-full text-base' >
@@ -114,12 +121,12 @@ const Register = ({setCurrentView}) => {
        
           </div>
 
-      <div className=' flex justify-center gap-2 w-full my-2 ' >
+           <div className=' flex justify-center gap-2 w-full my-2 ' >
             <label className='text-white px-3 text-base bg-blue-500 rounded-xl'>Profile</label>
             <input type='file' name="avatar" accept='image/*' className='w-[40%] cursor-pointer border-t-0 border-r-0 rounded-l-xl border-b-gray-500 pl-2  outline-none' onChange={registerDataChange}>
             </input>
         
-      </div>
+         </div>
          
           <div className='w-full px-[10%]' >
             <button type='submit' className='w-full py-1 text-lg bg-blue-700 text-white rounded-xl cursor-pointer'>Register</button>
@@ -128,8 +135,10 @@ const Register = ({setCurrentView}) => {
     
         <div> <p >Already have Account?<span className='text-blue-400 cursor-pointer' onClick={()=>setCurrentView('loginCard')}> Please Login!</span></p></div>
          </form>
-     </div>
+         
   
+     </div>}
+     </>
   )
 }
 

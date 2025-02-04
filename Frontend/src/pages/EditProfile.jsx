@@ -6,10 +6,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { BASE_URL } from '../Utils/constants';
 import { toast } from 'react-toastify';
-import { addUser } from '../Utils/userSlice';
+import { addUser, setIsLoading } from '../Utils/userSlice';
+import Loader from '../components/Loader';
 const EditProfile =({user,setEditProfile}) => {
     const dispatch=useDispatch();
     const navigate=useNavigate();
+    const {isLoading}=useSelector((store)=>store.user)
     const [firstname, setFirstname] = useState(user.firstName);
     const [lastname, setLastName] = useState(user.lastName);
     const [skills, setSkills] = useState(user.skills);
@@ -29,10 +31,12 @@ const EditProfile =({user,setEditProfile}) => {
            myForm.append("linkedInUrl",linkedInUrl)
            myForm.append("avatar",avatar)
         try {
+            dispatch(setIsLoading(true));
          const response=await axios.patch(BASE_URL+ "/api/profile/edit",myForm,{withCredentials:true,
             headers: { "Content-Type": "multipart/form-data" },
          });
          const data=response.data;
+         dispatch(setIsLoading(false));
          toast.success(data.message);
          dispatch(addUser(data.user));
          setEditProfile(false);
@@ -40,6 +44,7 @@ const EditProfile =({user,setEditProfile}) => {
         
             
         } catch (error) {
+            dispatch(setIsLoading(false));
            toast.error("Could'nt Update your profile")   ;
            console.log(error);
             
@@ -64,6 +69,7 @@ const EditProfile =({user,setEditProfile}) => {
     
   return (
     <div className='h-[90vh] w-screen flex justify-center'>
+        {isLoading ? <Loader/>:
         <div className='w-[50%] h-[90%] flex justify-between pt-4 '>
            <div className="w-[40%] h-full bg-[#191E24]">
             <h2 className='text-gray-200 text-center mt-6 font-semibold '>Edit Profile</h2>
@@ -123,7 +129,7 @@ const EditProfile =({user,setEditProfile}) => {
           
         </div>
 
-      
+        }
     </div>
   )
 }

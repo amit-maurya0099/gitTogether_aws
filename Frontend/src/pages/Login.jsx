@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import {useDispatch, useSelector} from "react-redux";
 import { addUser, setIsLoading } from '../Utils/userSlice';
 import { BASE_URL } from '../Utils/constants';
+import Loader from '../components/Loader';
 
 
 const Login = ({setCurrentView}) => {
@@ -22,7 +23,6 @@ const Login = ({setCurrentView}) => {
       ...user,
       [name]:value
     })
-    
    }
    const handleLogin=async(e)=>{
    e.preventDefault();
@@ -30,16 +30,16 @@ const Login = ({setCurrentView}) => {
    myForm.set('email',user.email)
    myForm.set('password',user.password)
    try {
-      
+     dispatch(setIsLoading(true)); 
     const response=await axios.post(BASE_URL+'/api/auth/login',myForm,{withCredentials: true });
     const data=response.data;
     navigate("/feed")
     toast.success(data.message);
      dispatch(addUser(data.user))
-     
+     dispatch(setIsLoading(false)); 
       
    } catch (error) {
-  
+    dispatch(setIsLoading(false)); 
      toast.error(error.response.data.message);
      
    }
@@ -47,6 +47,7 @@ const Login = ({setCurrentView}) => {
   
   return ( 
     <div className='flex justify-center items-center w-[90%] md:w-[25%] h-[70vh] mt-10 rounded-2xl no-scrollbar'>
+      {isLoading?<Loader/>:
     <div className="card bg-[#101828] shadow-sm  w-full h-full ">
       <h2 className='text-2xl font-bold text-center my-4 underline '>Login</h2>
       <form className='flex flex-col px-4 justify-center items-center gap-4' onSubmit={handleLogin}>
@@ -68,6 +69,7 @@ const Login = ({setCurrentView}) => {
      <div> <p >Don't have Account?<span className='text-blue-400 cursor-pointer' onClick={()=>setCurrentView('registerCard')}> Please Register!</span></p></div>
       </form>
   </div>
+}
 </div>
   )
 }
