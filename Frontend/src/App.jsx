@@ -9,6 +9,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addUser } from './Utils/userSlice';
 import ProtectedRoute from './Utils/ProtectedRoute';
 import Error from './components/Error';
+import Profile from './pages/Profile';
+import EditProfile from './pages/EditProfile';
 const App = () => {
   const dispatch=useDispatch();
   const {isAuthenticated}=useSelector((store)=>store.user)
@@ -40,9 +42,8 @@ const App = () => {
      <Routes>
       <Route path="/*" element={<Error/>}></Route>
       <Route path='/' element={<Body/>}></Route>
-      <Route path='/feed' element={<ProtectedRoute  Children={Feed}/>}>
-          
-      </Route>
+      <Route path='/feed' element={<ProtectedRoute  Children={Feed}/>}> </Route>
+      <Route path="/profile" element={<Profile/>}></Route>
      </Routes>
      
      </>

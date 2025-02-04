@@ -2,7 +2,7 @@ import React from 'react'
 import Logo from "../assets/Logo.png"
 import {toast} from "react-toastify"
 import axios from 'axios'
-import {useNavigate} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux'
 import { removeUser } from '../Utils/userSlice'
 import { BASE_URL } from '../Utils/constants'
@@ -50,9 +50,10 @@ const Navbar = () => {
      {user && <ul
         tabIndex={0}
         className="menu menu-sm dropdown-content bg-base-200  rounded-box z-1 mt-3 w-52 p-2 shadow flex flex-col gap-2">
-        <li className='text-sm cursor-pointer'>My Profile   </li>
-        <li className='text-sm cursor-pointer'>Settings</li>
-       <li className='text-sm cursor-pointer' onClick={handleLogout}>Logout</li>  
+       <Link to="/profile"> <li className='text-base cursor-pointer'>My Profile   </li></Link>
+       <Link to="/"> <li className='text-base cursor-pointer'>Home</li></Link>
+        <Link to="/feed"><li className='text-base cursor-pointer'>Feed</li></Link>
+       <li className='text-base cursor-pointer' onClick={handleLogout}>Logout</li>  
       </ul>}
     </div>
   </div>

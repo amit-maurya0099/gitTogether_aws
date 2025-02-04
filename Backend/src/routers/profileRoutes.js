@@ -5,7 +5,7 @@ const router=express.Router();
 
 
 router.route("/view").get(userAuth,getProfile);
-router.route("/edit/:id").patch(userAuth,updateProfile);
+router.route("/edit").patch(userAuth,updateProfile);
 router.route("/edit/password/:id").patch(userAuth,forgotPassword);
 
 

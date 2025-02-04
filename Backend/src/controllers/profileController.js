@@ -1,6 +1,7 @@
 const User = require("../models/user_model");
 const bcrypt = require("bcrypt");
 const sendToken = require("../utils/sendToken");
+const cloudinary=require('cloudinary');
 const { validateEditProfileData } = require("../utils/validation");
 
 const getProfile = async (req, res) => {
@@ -18,17 +19,43 @@ const getProfile = async (req, res) => {
   };
   const updateProfile = async (req, res) => {
     try {
+         
+        const loggedInUser=req.user;
       if(!validateEditProfileData(req)){
         return res.status(400).json({message:"Invalid Edit Request"})
       }
-      const { id } = req.params;
+      const { id } =req.user;
       const data = req.body;
-      const loggedInUser=await User.findById(id);
-      Object.keys(req.body).forEach((key)=>loggedInUser[key]=req.body[key]);
-      await loggedInUser.save();
+      let profilePic=req.body.avatar;
+      
+       let avatar;
+      if(profilePic){
+       const myCloud=await cloudinary.v2.uploader.upload(profilePic);
+      
+       avatar={
+        public_id:myCloud.public_id,
+        url:myCloud.secure_url
+       }
+               
+    }
+   
+
+      
+      const user=await User.findById(id);
+      Object.keys(req.body).forEach((key)=>{
+        if(key!=="avatar"){
+        user[key]=req.body[key];
+      }
+      })
+      if(avatar){
+        user.avatar=avatar;
+      }
+        
+     
+      await user.save();
       
      
-      res.status(200).json({ message: "Profile updated successfully",data:loggedInUser });
+      res.status(200).json({ message: "Profile updated successfully",user });
     } catch (err) {
       res.status(404).json({ message: err.message });
     }
