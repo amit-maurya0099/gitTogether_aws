@@ -33,7 +33,7 @@ const Feed = () => {
    },[])
 
   return (
-    <div className=" h-[90vh]   flex justify-center items-center ">
+    <div className="h-[60vh] md:h-[70vh] flex justify-center items-center mt-20">
       {
         isLoading?<Loader/>:
     ( feed &&

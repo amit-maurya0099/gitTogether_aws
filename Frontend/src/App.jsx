@@ -43,7 +43,7 @@ const App = () => {
       <Route path="/*" element={<Error/>}></Route>
       <Route path='/' element={<Body/>}></Route>
       <Route path='/feed' element={<ProtectedRoute  Children={Feed}/>}> </Route>
-      <Route path="/profile" element={<Profile/>}></Route>
+      <Route path="/profile" element={<ProtectedRoute Children={Profile}/>}></Route>
      </Routes>
      
      </>

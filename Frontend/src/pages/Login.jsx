@@ -46,7 +46,7 @@ const Login = ({setCurrentView}) => {
    }
   
   return ( 
-    <div className='flex justify-center items-center w-[90%] md:w-[25%] h-[70vh] mt-10 rounded-2xl no-scrollbar'>
+    <div className='flex justify-center items-center mt-28 w-[90%] md:w-[25%] h-[50vh]  md:h-[60vh] md:mt-20 rounded-2xl no-scrollbar'>
       {isLoading?<Loader/>:
     <div className="card bg-[#101828] shadow-sm  w-full h-full ">
       <h2 className='text-2xl font-bold text-center my-4 underline '>Login</h2>

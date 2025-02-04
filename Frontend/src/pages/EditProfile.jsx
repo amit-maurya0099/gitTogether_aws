@@ -70,8 +70,8 @@ const EditProfile =({user,setEditProfile}) => {
   return (
     <div className='h-[90vh] w-screen flex justify-center'>
         {isLoading ? <Loader/>:
-        <div className='w-[50%] h-[90%] flex justify-between pt-4 '>
-           <div className="w-[40%] h-full bg-[#191E24]">
+        <div className=' w-[85%] md:w-[50%] h-[90%] flex justify-center gap-8 pt-4 rounded-4xl '>
+           <div className=" w-full md:w-[40%] h-full bg-[#191E24] rounded-xl">
             <h2 className='text-gray-200 text-center mt-6 font-semibold '>Edit Profile</h2>
             <form className='h-[85%] no-scrollbar overflow-y-scroll  mt-4 flex flex-col gap-4' onSubmit={handleSubmit}>
                <div className='px-4 flex flex-col gap-1 '>
@@ -112,8 +112,8 @@ const EditProfile =({user,setEditProfile}) => {
             </form>
 
            </div>
-           <div className='w-[40%] h-full bg-[#191E24] '>
-            <img src={user.avatar.url} className='h-[300px] w-full object-cover ' alt="/" ></img>
+           <div className='w-[40%] h-full bg-[#191E24] hidden md:block rounded-xl'>
+            <img src={user.avatar.url} className='h-[300px] w-full object-cover rounded-t-xl ' alt="/" ></img>
             <div className='flex flex-col items-center gap-2 mt-6 ' >
                 <h2 className='font-semibold'>{( firstname) + " " +( lastname)}</h2>
                 <div className='flex gap-4 justify-center pb-2 ' >
