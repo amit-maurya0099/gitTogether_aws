@@ -10,19 +10,26 @@ import { addUser } from './Utils/userSlice';
 import ProtectedRoute from './Utils/ProtectedRoute';
 import Error from './components/Error';
 import Profile from './pages/Profile';
+import Connections from './pages/Connections';
+import Requests from './pages/Requests';
+import { setIsLoading } from './Utils/userSlice';
 
 const App = () => {
   const dispatch=useDispatch();
-  const {isAuthenticated}=useSelector((store)=>store.user)
+  const {isAuthenticated,isLoading}=useSelector((store)=>store.user);
+
   
-   const fetchUser=async()=>{
+  const fetchUser=async()=>{
  try {
+    setIsLoading(true);
    if(isAuthenticated ) return ;
-   const response=await axios.get(BASE_URL+'/api/profile/view',{withCredentials:'include'})
+   const response=await axios.get(BASE_URL+'/api/profile/view',{withCredentials:true})
      const data=response.data;
      dispatch(addUser(data.user));
+     setIsLoading(false);
       
  } catch (error) {
+  setIsLoading(false);
    if(error.status===401){
        console.log("Unauthorised Access")
    }else{
@@ -32,9 +39,9 @@ const App = () => {
    
    useEffect(()=>{
      fetchUser();
-   },[])
+   },[isAuthenticated])
 
-
+  if(isLoading) return null;
    
   return (
     <>
@@ -42,8 +49,14 @@ const App = () => {
      <Routes>
       <Route path="/*" element={<Error/>}></Route>
       <Route path='/' element={<Body/>}></Route>
-      <Route path='/feed' element={<ProtectedRoute  Children={Feed}/>}> </Route>
-      <Route path="/profile" element={<ProtectedRoute Children={Profile}/>}></Route>
+      <Route path="/feed" element={<ProtectedRoute children={<Feed/>}/>}></Route>
+      <Route path="/profile" element={<ProtectedRoute children={<Profile/>}/>}></Route>
+      <Route path="/connections" element={<ProtectedRoute children={<Connections/>}/>}></Route>
+      <Route path="/requests" element={<ProtectedRoute children={<Requests/>}/>}></Route>
+      {/* <Route path='/feed' element={<ProtectedRoute element={<Feed/>}/>}> </Route> */}
+      <Route path="/profile" element={<Profile/>}></Route>
+      <Route path="/connections" element={<Connections/>}></Route>
+      <Route path="/requests" element={<Requests/>}></Route>
      </Routes>
      
      </>
