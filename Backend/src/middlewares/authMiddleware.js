@@ -3,10 +3,9 @@ const jwt=require('jsonwebtoken');
 const User = require('../models/user_model');
 const userAuth=async(req,res,next)=>{ 
     try {
-        
         const token=req.cookies.token;
         if(!token){
-           return res.status(401).json({message:"Unauthorised Access"});
+           return res.status(401).json({message:"Unauthorised Access!"});
         }
         const decoded=jwt.verify(token,process.env.JWT_SECRET_KEY);
         
@@ -15,7 +14,7 @@ const userAuth=async(req,res,next)=>{
          next();
         
     } catch (error) {
-        res.status(401).json({message:"Unauthorised access!"})
+        res.status(401).json({message:error})
         console.log(error);
     }
        

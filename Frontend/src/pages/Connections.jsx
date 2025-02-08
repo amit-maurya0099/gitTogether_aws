@@ -34,7 +34,6 @@ const fetchConnections=async()=>{
       initial={{opacity:0,scale:0.5}} 
       animate={{opacity:1,scale:1}}
       transition={{
-         delay:0,
          duration:0.5
       }}
       className=' h-full w-full bg-[#191E24] py-4 '>

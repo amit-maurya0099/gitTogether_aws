@@ -19,7 +19,7 @@ const getConnections=async(req,res)=>{
             return element.fromUserId;
         })
         if(connections.length==0){
-            return res.status(404).json({message:"Connections not found"})
+            return res.status(404).json({ message: "Connections not found" });
         }
     
         res.status(200).json({data})
@@ -35,12 +35,14 @@ const getRequests=async(req,res)=>{
         const loggedInUserId=req.user.id;
 
         const findRequests=await ConnectionRequest.find({toUserId:loggedInUserId,status:"interested"}).populate('fromUserId',["firstName","lastName"])
-        if(findRequests.length==0){
-            return res.status(404).json({message:"No request found"});
+    
+        if(findRequests.length === 0){
+            return res.status(404).json({ message: "Request not found" });
         }
+
         res.status(200).json(findRequests);
     } catch (error) {
-        res.status(400).json({message:"Can't found reqests"})
+       res.status(400).json({message:error})
     }
 }
 const getFeedData=async(req,res)=>{

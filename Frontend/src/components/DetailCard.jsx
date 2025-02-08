@@ -14,7 +14,7 @@ const DetailCard = ({userDetail,setShowConnectionCard}) => {
      duration:0.5,
      
     }}
-    className='h-[450px] w-[350px] bg-gray-700 absolute z-10 top-[20%] md:top-[15%] left-[15%] md:left-[40%] rounded-xl'>
+    className='h-[450px] w-[350px] bg-gray-700 absolute z-10 top-[20%] md:top-[15%] left-[7%] md:left-[40%] rounded-xl'>
         <MdClose className='absolute text-3xl cursor-pointer right-4 top-2 text-gray-400' onClick={()=>{setShowConnectionCard(false)}} />
         <div className='flex flex-col items-center justify-center w-full h-full'>
          <div>

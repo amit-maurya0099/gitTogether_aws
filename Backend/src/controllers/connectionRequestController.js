@@ -64,7 +64,7 @@ const reviewConnectionRequest=async(req,res)=>{
       })
      
       if(!connectionRequest){
-        throw new Error("Connection Request not found");
+       return res.status(404).json({message:"Connection Request not found"});
       }
       
      

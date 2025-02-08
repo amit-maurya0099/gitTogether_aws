@@ -5,6 +5,7 @@ import  {useDispatch, useSelector} from "react-redux"
 import  {addRequests} from "../Utils/requestSlice"
 import RequestCard from '../components/RequestCard';
 import {motion} from "framer-motion"
+import {toast} from "react-toastify";
 
 const Requests = () => {
    const dispatch=useDispatch();
@@ -19,37 +20,41 @@ const fetchRequests=async()=>{
        dispatch(addRequests(data));
        
   } catch (error) {
-      console.log(error);
+      toast.error(error.response.data.message);
+      
   } 
 }
  useEffect(()=>{
     fetchRequests();
  },[])   
 
-   if(!requests) return;
-  if(requests?.length === 0) return <div>No Request found</div>
+
+   if(!requests) return <div className='absolute top-[40%] left-[35%] md:left-[45%] text-xl'>No Request found</div>;
+
 
   return (
      <div className='h-[80vh] md:h-[90vh] px-[3%] md:px-[10%] md:py-[2%] py-[5%] '>
-      <motion.div
+       <motion.div
          initial={{opacity:0,scale:0.5}}
          animate={{opacity:1,scale:1}}
          transition={{
           duration:0.5
          }}
-
+       
       className=' h-full w-full bg-[#191E24] py-4 '>
          <div className='py-2 w-full mb-4  '>
             <h2 className='font-semibold text-3xl text-center underline '> Connection Requests</h2>
          </div>
          <div className='h-[80%] overflow-y-auto no-scrollbar '>
-           {requests?.map((request)=><RequestCard request={request} key={request._id}/>)}
+        
+           {requests.map((request)=><RequestCard request={request} key={request._id}/>)}
          </div>
+       
          
 
      </motion.div>
-     </div>
     
+    </div>
    
    
   )
