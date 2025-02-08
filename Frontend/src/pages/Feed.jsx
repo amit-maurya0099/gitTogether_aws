@@ -31,14 +31,13 @@ const Feed = () => {
    useEffect(()=>{
      getFeedData();
    },[])
+   if(!feed) return null;
 
   return (
     <div className="h-[80vh] flex justify-center items-center md:mt-6 mt-8">
-      {
-        isLoading?<Loader/>:
-    ( feed &&
+     
       <UserCard user={feed[0]}/>
-    )}
+  
     </div>
   )
 }

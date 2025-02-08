@@ -3,13 +3,14 @@ import axios from 'axios';
 import {BASE_URL} from "../Utils/constants";
 import  {useDispatch, useSelector} from "react-redux"
 import  {addConnections} from "../Utils/connectionSlice"
+import ConnectionCard from '../components/ConnectionCard';
 
 const Connections = () => {
    const dispatch=useDispatch();
    const {connections}=useSelector((store)=>store.connections)
-   console.log(connections)
+
 const fetchConnections=async()=>{
-    
+
   try {
     const response=await axios.get(BASE_URL+"/api/user/connections",{withCredentials:true});
        const data=response.data;
@@ -23,10 +24,25 @@ const fetchConnections=async()=>{
     fetchConnections();
  },[])   
 
+  if(!connections) return;
+  if(connections.length === 0) return <div>No Connections found</div>
+
   return (
-    <div>
-       connections
-    </div>
+     <div className='h-[90vh] px-[2%] md:px-[10%] md:py-[2%] py-[5%] '>
+      <div className=' h-full w-full bg-[#191E24] py-4 '>
+         <div className='py-2 w-full mb-4  '>
+            <h2 className='font-semibold text-3xl text-center underline '>My Connections</h2>
+         </div>
+         <div className='h-[80%] overflow-y-auto no-scrollbar '>
+            {connections.map((connection)=> <ConnectionCard connection={connection} key={connection._id}/>)}
+         </div>
+         
+
+     </div>
+     </div>
+    
+   
+   
   )
 }
 
