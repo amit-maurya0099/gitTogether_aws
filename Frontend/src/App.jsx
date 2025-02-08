@@ -53,10 +53,7 @@ const App = () => {
       <Route path="/profile" element={<ProtectedRoute children={<Profile/>}/>}></Route>
       <Route path="/connections" element={<ProtectedRoute children={<Connections/>}/>}></Route>
       <Route path="/requests" element={<ProtectedRoute children={<Requests/>}/>}></Route>
-      {/* <Route path='/feed' element={<ProtectedRoute element={<Feed/>}/>}> </Route> */}
-      <Route path="/profile" element={<Profile/>}></Route>
-      <Route path="/connections" element={<Connections/>}></Route>
-      <Route path="/requests" element={<Requests/>}></Route>
+     
      </Routes>
      
      </>

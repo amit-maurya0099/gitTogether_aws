@@ -4,7 +4,7 @@ import { FaLinkedin } from "react-icons/fa6";
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import EditProfile from './EditProfile';
-
+import {motion} from "framer-motion"
 import Loader from '../components/Loader';
 
 const Profile = () => {
@@ -16,7 +16,15 @@ const Profile = () => {
     {!editProfile &&
     <div className='h-[90vh] w-screen flex justify-center p-[3%] md:p-4  '>
       {isLoading? <Loader/>:
-      <div className='bg-[#191E24] mt-[5%] md:mt-0 h-[90%] md:h-[95%] w-[95%] md:w-[25%] rounded-2xl'>
+      <motion.div 
+        initial={{scale:0, opacity:0}}
+        animate={{scale:1,opacity:1}}
+        transition={{
+         duration:0.5,
+         
+        }}
+
+      className='bg-[#191E24] mt-[5%] md:mt-0 h-[90%] md:h-[95%] w-[95%] md:w-[25%] rounded-2xl'>
          <div className='h-[40%] border-b border-gray-400 rounded-b-2xl flex flex-col items-center gap-4'>
           <img src={user?.avatar.url} alt="profileImg" className='rounded-full size-36 md:h-28 md:w-28 mt-4' ></img>
           <h2 className='text-xl font-semibold'>{user?.firstName + " " + user?.lastName}</h2>
@@ -53,7 +61,7 @@ const Profile = () => {
           </div>
            
          </div>
-      </div>
+      </motion.div>
 }
     </div>}
     {editProfile &&

@@ -2,9 +2,17 @@ import React from 'react'
 import { FaGithubSquare } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa6";
 import  {Link} from "react-router-dom"
+import {motion} from "framer-motion"
 const UserCard = ({user}) => {
   return (
-    <div className="card bg-base-300 w-[85%]   md:w-[20%] h-[75%] md:h-[90%] shadow-sm  ">
+    <motion.div
+    initial={{scale:0, opacity:0}}
+    animate={{scale:1,opacity:1}}
+    transition={{
+     duration:0.5,
+     
+    }}
+    className="card bg-base-300 w-[85%]   md:w-[20%] h-[75%] md:h-[90%] shadow-sm  ">
   <div className='h-[50%]'>
     <img
       src={user.avatar.url}
@@ -24,7 +32,7 @@ const UserCard = ({user}) => {
       <button className="btn btn-secondary">Interested</button>
     </div>
   </div>
-</div>
+</motion.div>
   )
 }
 

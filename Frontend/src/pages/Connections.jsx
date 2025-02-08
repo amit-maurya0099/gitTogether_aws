@@ -4,6 +4,7 @@ import {BASE_URL} from "../Utils/constants";
 import  {useDispatch, useSelector} from "react-redux"
 import  {addConnections} from "../Utils/connectionSlice"
 import ConnectionCard from '../components/ConnectionCard';
+import { motion } from 'framer-motion';
 
 const Connections = () => {
    const dispatch=useDispatch();
@@ -29,7 +30,14 @@ const fetchConnections=async()=>{
 
   return (
      <div className='h-[90vh] px-[2%] md:px-[10%] md:py-[2%] py-[5%] '>
-      <div className=' h-full w-full bg-[#191E24] py-4 '>
+      <motion.div 
+      initial={{opacity:0,scale:0.5}} 
+      animate={{opacity:1,scale:1}}
+      transition={{
+         delay:0,
+         duration:0.5
+      }}
+      className=' h-full w-full bg-[#191E24] py-4 '>
          <div className='py-2 w-full mb-4  '>
             <h2 className='font-semibold text-3xl text-center underline '>My Connections</h2>
          </div>
@@ -38,7 +46,7 @@ const fetchConnections=async()=>{
          </div>
          
 
-     </div>
+     </motion.div>
      </div>
     
    
