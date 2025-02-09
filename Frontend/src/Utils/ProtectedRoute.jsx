@@ -14,7 +14,7 @@ const ProtectedRoute = ({ children }) => {
    
     const timeout = setTimeout(() => {
       setLoading(false);
-    }, 200); 
+    }, 100); 
 
     return () => clearTimeout(timeout); 
   }, []);

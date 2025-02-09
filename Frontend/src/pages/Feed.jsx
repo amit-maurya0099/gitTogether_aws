@@ -10,28 +10,21 @@ import Loader from '../components/Loader';
 const Feed = () => {
     const dispatch=useDispatch();
   const {feed}=useSelector((store)=>store.feed);
-  const {isLoading}=useSelector((store)=>store.user);  
- 
-  
-   const  getFeedData=async()=>{
-    if(feed) return;
 
-     try {
-        dispatch(setIsLoading(true));
-      const response=await axios.get(BASE_URL+'/api/user/feed',{withCredentials:true})
+  const getFeedData=async()=>{
+    try {
+      const response=await axios.get(BASE_URL+"/api/user/feed",{withCredentials:true});
       const data=response.data;
-      dispatch(addFeed(data.users))
-      dispatch(setIsLoading(false));
-     } catch (error) {
-        console.log(error?.response?.data.message)
-        dispatch(setIsLoading(false));
-        
-     }
-   }
-   useEffect(()=>{
-     getFeedData();
-   },[])
-   if(!feed) return null;
+      dispatch(addFeed(data.users));
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  useEffect(()=>{
+    getFeedData();
+  },[])
+
+   if(!feed || feed.length===0) return <div className='absolute top-[40%] left-[30%] md:left-[45%] text-xl '>No User found</div>;
 
   return (
     <div className="h-[80vh] flex justify-center items-center md:mt-6 mt-8">

@@ -5,8 +5,11 @@ import Login from './Login'
 import Register from './Register'
 import {motion} from "framer-motion"
 import Footer from '../components/Footer'
+import { useSelector } from 'react-redux'
+import Loader from '../components/Loader'
 const LandingPage = () => {
   const [currentView,setCurrentView]=useState('homeCard');
+  const {isLoading} =useSelector((store)=>store.user);
   const fadeInUp = {
     hidden: { opacity: 0, y: 10 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
@@ -15,7 +18,7 @@ const LandingPage = () => {
 
   return (
     <div style={{backgroundImage:`url(${BGImg})`,backgroundSize:"cover",width:"100%", height:"100vh",backgroundAttachment:'fixed'}}>
-      <div className='overflow-y-auto flex justify-center w-full h-full '>
+      <div className='overflow-y-auto flex justify-center w-full h-full no-scrollbar '>
      
        {currentView === 'homeCard' && (
          <motion.div
@@ -44,7 +47,7 @@ const LandingPage = () => {
             exit="exit"
             variants={fadeInUp}
             className='w-full flex justify-center'
-          ><Register setCurrentView={setCurrentView}/></motion.div>)}
+          >{isLoading? <Loader/> :<Register setCurrentView={setCurrentView}/>}</motion.div>)}
       </div>
       <Footer/>
      

@@ -10,6 +10,7 @@ import {toast} from "react-toastify";
 const Requests = () => {
    const dispatch=useDispatch();
    const {requests}=useSelector((store)=>store.requests)
+  
    
 
 const fetchRequests=async()=>{
@@ -20,7 +21,7 @@ const fetchRequests=async()=>{
        dispatch(addRequests(data));
        
   } catch (error) {
-      toast.error(error.response.data.message);
+      console.log(error);
       
   } 
 }
@@ -29,7 +30,7 @@ const fetchRequests=async()=>{
  },[])   
 
 
-   if(!requests) return <div className='absolute top-[40%] left-[35%] md:left-[45%] text-xl'>No Request found</div>;
+   if(!requests || requests.length ===0) return <div className='absolute top-[40%] left-[30%] md:left-[45%] text-xl'>No Request found</div>;
 
 
   return (

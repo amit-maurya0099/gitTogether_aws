@@ -16,7 +16,7 @@ import { setIsLoading } from './Utils/userSlice';
 
 const App = () => {
   const dispatch=useDispatch();
-  const {isAuthenticated,isLoading}=useSelector((store)=>store.user);
+  const {isAuthenticated}=useSelector((store)=>store.user);
 
   
   const fetchUser=async()=>{
@@ -41,7 +41,7 @@ const App = () => {
      fetchUser();
    },[isAuthenticated])
 
-  if(isLoading) return null;
+  
    
   return (
     <>

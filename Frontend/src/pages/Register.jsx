@@ -5,11 +5,11 @@ import {toast} from 'react-toastify'
 import { useDispatch, useSelector } from 'react-redux'
 import { addUser,setIsLoading } from '../Utils/userSlice'
 import { BASE_URL } from '../Utils/constants'
-import Loader from '../components/Loader'
+
 const Register = ({setCurrentView}) => {
     const navigate=useNavigate();
     const dispatch=useDispatch();
-    const {isLoading}=useSelector((store)=>store.user)
+    
       const [user,setUser]=useState({
             firstName:"",
             lastName:"",
@@ -87,9 +87,8 @@ const Register = ({setCurrentView}) => {
 
 
   return (
-      <>
-      {isLoading?<Loader/>:
-    <div className='w-[90%] md:w-[35%] h-[70vh] mt-10 bg-[#101828] rounded-xl shadow-2xl no-scrollbar'>
+      <div className='w-[90%] md:w-[35%] h-[70vh] mt-10 bg-[#101828] rounded-xl shadow-2xl no-scrollbar'>
+    
 
          <h2 className='text-2xl font-bold text-center my-4 underline'>Register</h2>
          <form className=' flex flex-col gap-4 items-center justify-center' onSubmit={handleRegister}>
@@ -136,9 +135,9 @@ const Register = ({setCurrentView}) => {
         <div> <p >Already have Account?<span className='text-blue-400 cursor-pointer' onClick={()=>setCurrentView('loginCard')}> Please Login!</span></p></div>
          </form>
          
-  
-     </div>}
-     </>
+      
+   
+     </div>
   )
 }
 

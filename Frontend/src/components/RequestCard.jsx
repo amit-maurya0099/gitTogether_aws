@@ -2,17 +2,22 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import {BASE_URL} from "../Utils/constants";
 import {toast} from "react-toastify"
+import {useDispatch} from "react-redux"
+import { removeRequest } from '../Utils/requestSlice';
+
 
 
 const RequestCard = ({request}) => {
+  const dispatch=useDispatch();
+  
 
   const handleButtonClick=async(e)=>{
     const status=e.target.name;
-    const url=BASE_URL+`/api/connection/request/review/${status}/${request._id}`
-    
     try {
+      const url=BASE_URL+`/api/connection/request/review/${status}/${request._id}`
       const response=await axios.post(url,{},{withCredentials:true});
       toast.success(response.data.message);
+      dispatch(removeRequest(request._id))
       
     } catch (error) {
        console.log(error);

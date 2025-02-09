@@ -5,6 +5,7 @@ import  {useDispatch, useSelector} from "react-redux"
 import  {addConnections} from "../Utils/connectionSlice"
 import ConnectionCard from '../components/ConnectionCard';
 import { motion } from 'framer-motion';
+import {toast} from "react-toastify";
 
 const Connections = () => {
    const dispatch=useDispatch();
@@ -18,6 +19,7 @@ const fetchConnections=async()=>{
        dispatch(addConnections(data.data));
        
   } catch (error) {
+   toast.error(error.response.message);
       console.log(error);
   } 
 }
@@ -25,8 +27,8 @@ const fetchConnections=async()=>{
     fetchConnections();
  },[])   
 
-  if(!connections) return;
-  if(connections.length === 0) return <div>No Connections found</div>
+  if(!connections || connections.length ===0) return <div  className='absolute top-[40%] left-[30%] md:left-[45%] text-xl'>No Connections found</div>;
+
 
   return (
      <div className='h-[90vh] px-[2%] md:px-[10%] md:py-[2%] py-[5%] '>
