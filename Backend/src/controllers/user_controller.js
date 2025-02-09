@@ -40,10 +40,10 @@ const getRequests=async(req,res)=>{
 const getFeedData=async(req,res)=>{
 
    try {
-        const page=parseInt(req.query.page || 1);
-        let limit=parseInt(req.query.limit || 5);
-       limit= limit>50 ?50 :limit;
-        const skip=limit*(page-1)
+    //     const page=parseInt(req.query.page || 1);
+    //     let limit=parseInt(req.query.limit || 5);
+    //    limit= limit>50 ?50 :limit;
+    //     const skip=limit*(page-1)
         
 
        const loggedInUser=req.user;
@@ -63,7 +63,8 @@ const getFeedData=async(req,res)=>{
        $and:[
         { _id:{$nin:Array.from(hideFromUserFeed)}},
         {_id:{$ne:loggedInUser.id}}]
-     }).select(ConnectionUserDataString).skip(skip).limit(limit)
+     }).select(ConnectionUserDataString)
+     // pagination has been removed
        
        res.status(200).json({users})
    } catch (error) {
