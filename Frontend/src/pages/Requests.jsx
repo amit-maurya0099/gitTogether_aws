@@ -6,22 +6,28 @@ import  {addRequests} from "../Utils/requestSlice"
 import RequestCard from '../components/RequestCard';
 import {motion} from "framer-motion"
 import {toast} from "react-toastify";
+import {setIsLoading} from "../Utils/userSlice"
+import Loader from "../components/Loader"
 
 const Requests = () => {
    const dispatch=useDispatch();
    const {requests}=useSelector((store)=>store.requests)
+   const {isLoading}=useSelector((store)=>store.user)
   
    
 
 const fetchRequests=async()=>{
 
   try {
+      dispatch(setIsLoading(true));
     const response=await axios.get(BASE_URL+"/api/user/requests",{withCredentials:true});
        const data=response.data;
        dispatch(addRequests(data));
+       dispatch(setIsLoading(false));
        
   } catch (error) {
       console.log(error);
+      dispatch(setIsLoading(false));
       
   } 
 }
@@ -35,6 +41,7 @@ const fetchRequests=async()=>{
 
   return (
      <div className='h-[80vh] md:h-[90vh] px-[3%] md:px-[10%] md:py-[2%] py-[5%] '>
+      {isLoading? <Loader/> :
        <motion.div
          initial={{opacity:0,scale:0.5}}
          animate={{opacity:1,scale:1}}
@@ -53,7 +60,7 @@ const fetchRequests=async()=>{
        
          
 
-     </motion.div>
+     </motion.div>}
     
     </div>
    

@@ -6,20 +6,26 @@ import  {addConnections} from "../Utils/connectionSlice"
 import ConnectionCard from '../components/ConnectionCard';
 import { motion } from 'framer-motion';
 import {toast} from "react-toastify";
+import {setIsLoading} from "../Utils/userSlice"
+import Loader from "../components/Loader"
 
 const Connections = () => {
    const dispatch=useDispatch();
    const {connections}=useSelector((store)=>store.connections)
+   const {isLoading}=useSelector((store)=>store.user)
 
 const fetchConnections=async()=>{
 
   try {
+      dispatch(setIsLoading(true));
     const response=await axios.get(BASE_URL+"/api/user/connections",{withCredentials:true});
        const data=response.data;
        dispatch(addConnections(data.data));
+       dispatch(setIsLoading(false));
        
   } catch (error) {
    toast.error(error.response.message);
+     dispatch(setIsLoading(false));
       console.log(error);
   } 
 }
@@ -32,6 +38,7 @@ const fetchConnections=async()=>{
 
   return (
      <div className='h-[90vh] px-[2%] md:px-[10%] md:py-[2%] py-[5%] '>
+      {isLoading? <Loader/>:
       <motion.div 
       initial={{opacity:0,scale:0.5}} 
       animate={{opacity:1,scale:1}}
@@ -47,7 +54,7 @@ const fetchConnections=async()=>{
          </div>
          
 
-     </motion.div>
+     </motion.div>}
      </div>
     
    

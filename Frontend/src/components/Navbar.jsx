@@ -12,6 +12,7 @@ const Navbar = () => {
   const dispatch=useDispatch();
   const [togglemenu,setToggleMenu]=useState(false)
   const [profilemenu,setProfileMenu]=useState(false)
+  const [activeTab,setActiveTab]=useState("home")
   const {user,isAuthenticated}=useSelector((state)=>state.user)
   
   const profileImg= user? user.avatar.url :"https://static-00.iconduck.com/assets.00/user-icon-1024x1024-dtzturco.png";
@@ -33,6 +34,12 @@ const Navbar = () => {
   const handleToggleMenu=()=>{
       setToggleMenu(!togglemenu);
   }
+  const handleTabClick=(tabName)=>{
+    console.log("hello",tabName);
+    setActiveTab(tabName);
+    setToggleMenu(false)
+      
+  }
   return (
     <div className="navbar bg-[#191E24] shadow-sm sticky top-0 opacity-100 z-10 flex justify-between">
       
@@ -42,9 +49,11 @@ const Navbar = () => {
     <img src={Logo} className=" h-8 md:h-10 "></img>
   </div>
   {isAuthenticated &&
-  <div className={`${togglemenu? "absolute z-10 left-5 top-14 p-3 flex flex-col gap-3 w-40":"hidden md:flex"}    md:gap-4 mr-10 bg-[#191E24]  rounded-xl text-base font-sans font-medium `}  >
-   <Link to="/" onClick={()=>setToggleMenu(false)}> <h2>Home</h2></Link>
-    <Link to="/feed" onClick={()=>{setToggleMenu(false)}}><h2>Feed</h2></Link>
+  <div className={`${togglemenu? "absolute z-10 left-5 top-14 p-3 flex flex-col gap-3 w-40":"hidden md:flex"}    md:gap-6 mr-10 bg-[#191E24]  rounded-xl text-base font-sans font-medium `}  >
+   <Link to="/" onClick={()=>handleTabClick("home")}> <h2 className={` px-3 py-0.5 rounded-xl
+    ${activeTab ==="home" ? "bg-gray-600":""}`}>Home</h2></Link>
+    <Link to="/feed" onClick={()=>handleTabClick("feed")}><h2 className={` px-3 py-0.5 rounded-xl
+    ${activeTab ==="feed" ? "bg-gray-600":""}`}>Feed</h2></Link>
     <h2>Messages</h2>
     <h2>About us</h2>
   </div>}
