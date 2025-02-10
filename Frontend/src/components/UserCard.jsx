@@ -25,14 +25,15 @@ const UserCard = ({user}) => {
 
   return (
     <motion.div
-    initial={{scale:0, opacity:0}}
-    animate={{scale:1,opacity:1,rotate:360}}
+    initial={{scale:0.5, opacity:0}}
+    animate={{scale:1,opacity:1 }}
     transition={{
      duration:0.5,
      
      
+     
     }}
-    className="card bg-base-300 w-[85%]   md:w-[20%] h-[75%] md:h-[90%] shadow-sm  ">
+    className="card bg-base-300 w-[85%]   md:w-[20%] h-[70%] md:h-[80%] shadow-sm  ">
   <div className='h-[50%]'>
     <img
       src={user?.avatar.url}

@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import EditProfile from './EditProfile';
 import {motion} from "framer-motion"
 import Loader from '../components/Loader';
-
+import BGImg from "../assets/BG2.png"
 const Profile = () => {
    const {user,isLoading}=useSelector((store)=>store.user);
    const navigate=useNavigate();
@@ -14,7 +14,8 @@ const Profile = () => {
   return (
     <>
     {!editProfile &&
-    <div className='h-[90vh] w-screen flex justify-center p-[3%] md:p-4  '>
+    <div className='h-[90vh] w-screen flex justify-center p-[3%] md:p-4' 
+     style={{backgroundImage:`url(${BGImg})`,backgroundSize:"cover",width:"100%", height:"90vh",backgroundAttachment:'fixed'}}>
       {isLoading? <Loader/>:
       <motion.div 
         initial={{scale:0, opacity:0}}
@@ -24,7 +25,7 @@ const Profile = () => {
          
         }}
 
-      className='bg-[#191E24] mt-[5%] md:mt-0 h-[90%] md:h-[95%] w-[95%] md:w-[25%] rounded-2xl'>
+      className='bg-[#191E24] mt-[5%] md:mt-0 h-[80%] md:h-[95%] w-[95%] md:w-[25%] rounded-2xl'>
          <div className='h-[40%] border-b border-gray-400 rounded-b-2xl flex flex-col items-center gap-4'>
           <img src={user?.avatar.url} alt="profileImg" className='rounded-full size-36 md:h-28 md:w-28 mt-4' ></img>
           <h2 className='text-xl font-semibold'>{user?.firstName + " " + user?.lastName}</h2>
@@ -38,20 +39,20 @@ const Profile = () => {
              <h2 className='text-xl font-semibold'>About</h2>
              <p className='text-base'>{user?.about}</p>
           </div>
-          <div className='pt-2 flex flex-col gap-4 '>
-             <div className='flex gap-4 items-center'>
+          <div className='pt-2 flex flex-col gap-2 '>
+             <div className='flex gap-2 items-center'>
               <h2 className=' text-lg '>Email :</h2>
               <p className='text-base' >{user?.email}</p>
              </div>
-             <div className='flex gap-4 items-center'>
+             <div className='flex gap-2 items-center'>
               <h2 className=' text-lg '>Skills :</h2>
               <p className='text-base w-[80%] overflow-x-scroll no-scrollbar' >{user?.skills}</p>
              </div>
-             <div className='flex gap-4 items-center'>
+             <div className='flex gap-2 items-center'>
               <h2 className=' text-lg '>Github :</h2>
               <p className='text-base' >{user?.githubUrl}</p>
              </div>
-             <div className='flex gap-4 items-center  '>
+             <div className='flex gap-2 items-center  '>
               <h2 className='text-lg '>LinkedIn:</h2>
               <p className='text-base ' >{user?.linkedInUrl}</p>
              </div>

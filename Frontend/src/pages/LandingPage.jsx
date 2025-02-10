@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import BGImg from "../assets/BgImg.png"
+import BGImg from "../assets/BG2.png"
 import HomeCard from '../components/HomeCard'
 import Login from './Login'
 import Register from './Register'
