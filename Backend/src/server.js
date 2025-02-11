@@ -15,7 +15,7 @@ require('dotenv').config()
 app.use(cookieParser())
 app.use(express.json());
 app.use(cors({
-    origin:"http://localhost:5173",
+    origin:["http://localhost:5173","http://15.206.194.35"],
     credentials:true
 }))
 app.use(fileupload());
