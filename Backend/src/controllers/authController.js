@@ -9,17 +9,28 @@ const cloudinary=require('cloudinary');
 const register = async (req, res) => {
   const { firstName, lastName, email, password, about, skills,githubUrl,linkedInUrl } = req.body;
   
-  let profilePic=req.body.avatar;
+  let profilePic=req.body.avatar ;
+   
   
   try {
+    if(!profilePic){
+      throw new Error("Avatar is required!")
+    }
     validateSignUpData(req);
     const isExist = await User.findOne({ email });
    
     if (isExist) {
-      throw new Error("User already exist with this email");
+      return res.status(400).json({message:"User already exist with this email"})
     }
-
+    if(profilePic){
     const myCloud=await cloudinary.v2.uploader.upload(profilePic);
+     avatar={
+      public_id:myCloud.public_id,
+      url:myCloud.secure_url
+    }
+  }
+
+  
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await User.create({
       firstName,
@@ -30,10 +41,7 @@ const register = async (req, res) => {
       about,
       githubUrl,
       linkedInUrl,
-      avatar:{
-        public_id:myCloud.public_id,
-        url:myCloud.secure_url
-      }
+       avatar,
     });
     sendToken(user, res, 200, "User Registered Successfully");
   } catch (error) {

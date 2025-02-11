@@ -121,7 +121,7 @@ const Register = ({setCurrentView}) => {
           </div>
 
            <div className=' flex justify-center gap-2 w-full my-2 ' >
-            <label className='text-white px-3 text-base bg-blue-500 rounded-xl'>Profile</label>
+            <label className='text-white px-3 text-base bg-blue-500 rounded-xl'>Profile*</label>
             <input type='file' name="avatar" accept='image/*' className='w-[40%] cursor-pointer border-t-0 border-r-0 rounded-l-xl border-b-gray-500 pl-2  outline-none' onChange={registerDataChange}>
             </input>
         
