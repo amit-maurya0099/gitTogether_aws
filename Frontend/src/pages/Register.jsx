@@ -69,7 +69,7 @@ const Register = ({setCurrentView}) => {
     
       try {    
             dispatch(setIsLoading(true));
-        const response=await axios.post(BASE_URL+"/api/auth/signup",myForm,{withCredentials: true });
+        const response=await axios.post(BASE_URL+"/auth/signup",myForm,{withCredentials: true });
          const data=response.data;
          dispatch(setIsLoading(false)); 
          navigate('/feed');

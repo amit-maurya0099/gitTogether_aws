@@ -23,7 +23,7 @@ const App = () => {
  try {
     setIsLoading(true);
    if(isAuthenticated ) return ;
-   const response=await axios.get(BASE_URL+'/api/profile/view',{withCredentials:true})
+   const response=await axios.get(BASE_URL+'/profile/view',{withCredentials:true})
      const data=response.data;
      dispatch(addUser(data.user));
      setIsLoading(false);

@@ -19,10 +19,10 @@ app.use(cors({
     credentials:true
 }))
 app.use(fileupload());
-app.use("/api/auth",authRoutes)
-app.use("/api/profile",profileRoutes)
-app.use("/api/user",userRoutes);
-app.use("/api/connection",connectionRequestRoutes);
+app.use("/auth",authRoutes)
+app.use("/profile",profileRoutes)
+app.use("/user",userRoutes);
+app.use("/connection",connectionRequestRoutes);
 
 
 
@@ -30,7 +30,7 @@ app.use("/api/connection",connectionRequestRoutes);
 
 
 connectDB().then(()=>{
-    app.listen(3000,()=>{
+    app.listen(process.env.PORT,()=>{
         console.log("Server is running on port 3000")
     })
 }).catch((err)=>{

@@ -32,7 +32,7 @@ const EditProfile =({user,setEditProfile}) => {
            myForm.append("avatar",avatar)
         try {
             dispatch(setIsLoading(true));
-         const response=await axios.patch(BASE_URL+ "/api/profile/edit",myForm,{withCredentials:true,
+         const response=await axios.patch(BASE_URL+ "/profile/edit",myForm,{withCredentials:true,
             headers: { "Content-Type": "multipart/form-data" },
          });
          const data=response.data;

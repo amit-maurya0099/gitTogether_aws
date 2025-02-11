@@ -20,7 +20,7 @@ const fetchRequests=async()=>{
 
   try {
       dispatch(setIsLoading(true));
-    const response=await axios.get(BASE_URL+"/api/user/requests",{withCredentials:true});
+    const response=await axios.get(BASE_URL+"/user/requests",{withCredentials:true});
        const data=response.data;
        dispatch(addRequests(data));
        dispatch(setIsLoading(false));

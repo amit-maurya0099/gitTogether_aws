@@ -14,7 +14,7 @@ const RequestCard = ({request}) => {
   const handleButtonClick=async(e)=>{
     const status=e.target.name;
     try {
-      const url=BASE_URL+`/api/connection/request/review/${status}/${request._id}`
+      const url=BASE_URL+`/connection/request/review/${status}/${request._id}`
       const response=await axios.post(url,{},{withCredentials:true});
       toast.success(response.data.message);
       dispatch(removeRequest(request._id))

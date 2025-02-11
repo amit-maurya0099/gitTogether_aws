@@ -31,7 +31,7 @@ const Login = ({setCurrentView}) => {
    myForm.set('password',user.password)
    try {
      dispatch(setIsLoading(true)); 
-    const response=await axios.post(BASE_URL+'/api/auth/login',myForm,{withCredentials: true });
+    const response=await axios.post(BASE_URL+'/auth/login',myForm,{withCredentials: true });
     const data=response.data;
     navigate("/feed")
     toast.success(data.message);

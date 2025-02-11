@@ -19,7 +19,7 @@ const Navbar = () => {
   const handleLogout=async()=>{
     try {
      
-      const response=await axios.post(BASE_URL+'/api/auth/logout',{},{withCredentials:true});
+      const response=await axios.post(BASE_URL+'/auth/logout',{},{withCredentials:true});
       const data=response.data;
       toast.success(data.message)
       navigate('/');

@@ -13,7 +13,7 @@ const UserCard = ({user}) => {
   const handleClick=async(e)=>{
    const status=e.target.name;
    try {
-    const response=await axios.post(BASE_URL+`/api/connection/request/send/${status}/${user._id}`,{},{withCredentials:true})
+    const response=await axios.post(BASE_URL+`/connection/request/send/${status}/${user._id}`,{},{withCredentials:true})
     toast.success(response.data.message);
      dispatch(removeFeedUser(user._id))
      

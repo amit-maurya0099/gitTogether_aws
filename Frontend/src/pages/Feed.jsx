@@ -16,7 +16,7 @@ const Feed = () => {
   const getFeedData=async()=>{
     try {
         dispatch(setIsLoading(true));
-      const response=await axios.get(BASE_URL+"/api/user/feed",{withCredentials:true});
+      const response=await axios.get(BASE_URL+"/user/feed",{withCredentials:true});
       const data=response.data;
       dispatch(addFeed(data.users));
       dispatch(setIsLoading(false));

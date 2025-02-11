@@ -18,7 +18,7 @@ const fetchConnections=async()=>{
 
   try {
       dispatch(setIsLoading(true));
-    const response=await axios.get(BASE_URL+"/api/user/connections",{withCredentials:true});
+    const response=await axios.get(BASE_URL+"/user/connections",{withCredentials:true});
        const data=response.data;
        dispatch(addConnections(data.data));
        dispatch(setIsLoading(false));
