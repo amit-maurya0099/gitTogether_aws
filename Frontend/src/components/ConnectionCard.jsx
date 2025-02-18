@@ -2,10 +2,12 @@ import React, { useState } from 'react'
 import UserCard from './UserCard'
 import DetailCard from './DetailCard';
 
+
 const ConnectionCard = ({connection}) => {
     const [showConnectionCard,setShowConnectionCard]=useState(false);
    
   return (
+    
     <div className='h-[150px] mx-[2%] md:mx-[10%] border border-dashed  my-4 px-2 md:px-4 '>
              <div className='h-full w-full flex justify-between items-center'>
                <img src={connection.avatar.url} alt="/" className='rounded-full object-cover w-[100px] h-[100px]'></img>
@@ -21,6 +23,7 @@ const ConnectionCard = ({connection}) => {
               
              
     </div>
+  
   )
 }
 

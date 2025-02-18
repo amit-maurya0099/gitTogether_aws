@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Logo from "../assets/Logo.png"
 import {toast} from "react-toastify"
 import axios from 'axios'
-import {Link, useLocation, useNavigate} from "react-router-dom"
+import {Link, useLocation, useNavigate, useParams} from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux'
 import { removeUser } from '../Utils/userSlice'
 import { BASE_URL } from '../Utils/constants'
@@ -49,10 +49,11 @@ const Navbar = () => {
   <div className={`${togglemenu? "absolute z-10 left-5 top-14 p-3 flex flex-col gap-3 w-40":"hidden md:flex"}    md:gap-6 mr-10 bg-[#191E24]  rounded-xl text-base font-sans font-medium `}  >
    <Link to="/" onClick={handleTabClick}> <h2 className={` px-3 py-0.5 rounded-xl
     ${path.pathname ==="/" ? "bg-gray-600":""}`}>Home</h2></Link>
-    <Link to="/feed" onClick={handleTabClick}><h2 className={` px-3 py-0.5 rounded-xl
+    <Link to="/feed" onClick={handleTabClick}><h2 className={` px-4 py-0.5 rounded-xl
     ${path.pathname ==="/feed" ? "bg-gray-600":""}`}>Feed</h2></Link>
-    <h2>Messages</h2>
-    <h2>About us</h2>
+     <Link to="/chats" onClick={handleTabClick}><h2 className={` px-4 py-0.5 rounded-xl
+    ${path.pathname.startsWith("/chats" ) ? "bg-gray-600":""}`}>Chats</h2></Link>
+    
   </div>}
   <div className="flex gap-6 mr-2 items-center" >
     {/* <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" /> */}

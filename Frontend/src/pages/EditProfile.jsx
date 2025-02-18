@@ -8,6 +8,7 @@ import { BASE_URL } from '../Utils/constants';
 import { toast } from 'react-toastify';
 import { addUser, setIsLoading } from '../Utils/userSlice';
 import Loader from '../components/Loader';
+import {motion} from "framer-motion";
 const EditProfile =({user,setEditProfile}) => {
     const dispatch=useDispatch();
     const navigate=useNavigate();
@@ -70,7 +71,11 @@ const EditProfile =({user,setEditProfile}) => {
   return (
     <div className='h-[90vh] w-screen flex justify-center'>
         {isLoading ? <Loader/>:
-        <div className=' w-[85%] md:w-[50%] h-[90%] flex justify-center gap-8 pt-4 rounded-4xl '>
+        <motion.div
+        initial={{ opacity: 0, scale: 0.5, x: 100, y: 100 }}
+        animate={{ opacity: 1, scale: 1, x: 0, y: 0 }}
+        transition={{ duration: 0.5}}
+        className=' w-[85%] md:w-[50%] h-[90%] flex justify-center gap-8 pt-4 rounded-4xl '>
            <div className=" w-full md:w-[40%] h-full bg-[#191E24] rounded-xl">
             <h2 className='text-gray-200 text-center mt-6 font-semibold '>Edit Profile</h2>
             <form className='h-[85%] no-scrollbar overflow-y-scroll  mt-4 flex flex-col gap-4' onSubmit={handleSubmit}>
@@ -127,7 +132,7 @@ const EditProfile =({user,setEditProfile}) => {
 
            </div>
           
-        </div>
+        </motion.div>
 
         }
     </div>

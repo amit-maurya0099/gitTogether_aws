@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import {Routes,Route, useLocation} from "react-router-dom"
+import {Routes,Route, useLocation, Outlet} from "react-router-dom"
 import Body from './components/Body';
 import Navbar from './components/Navbar';
 import Feed from './pages/Feed';
@@ -13,6 +13,8 @@ import Profile from './pages/Profile';
 import Connections from './pages/Connections';
 import Requests from './pages/Requests';
 import { setIsLoading } from './Utils/userSlice';
+import Chats from './pages/Chats';
+import ChatComponent from './components/ChatComponent';
 
 const App = () => {
   const dispatch=useDispatch();
@@ -41,6 +43,7 @@ const App = () => {
      fetchUser();
    },[isAuthenticated])
 
+
   
    
   return (
@@ -53,6 +56,10 @@ const App = () => {
       <Route path="/profile" element={<ProtectedRoute children={<Profile/>}/>}></Route>
       <Route path="/connections" element={<ProtectedRoute children={<Connections/>}/>}></Route>
       <Route path="/requests" element={<ProtectedRoute children={<Requests/>}/>}></Route>
+      <Route path="/chats" element={<ProtectedRoute children={<Chats/>}/>}>
+          <Route path=':id' element={<ChatComponent/>}></Route>
+      
+      </Route>
      
      </Routes>
      

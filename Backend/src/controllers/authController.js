@@ -14,7 +14,7 @@ const register = async (req, res) => {
   
   try {
     if(!profilePic){
-      throw new Error("Avatar is required!")
+      throw new Error("Avatar is required!");
     }
     validateSignUpData(req);
     const isExist = await User.findOne({ email });

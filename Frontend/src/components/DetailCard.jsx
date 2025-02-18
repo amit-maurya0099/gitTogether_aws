@@ -7,12 +7,13 @@ import {motion} from 'framer-motion'
 const DetailCard = ({userDetail,setShowConnectionCard}) => {
       
   return (
+    
     <motion.div
     initial={{scale:0, opacity:0}}
     animate={{scale:1,opacity:1}}
+    exit={{scale:0,opacity:0}}
     transition={{
      duration:0.5,
-     
     }}
     className='h-[450px] w-[350px] bg-gray-700 absolute z-10 top-[20%] md:top-[15%] left-[7%] md:left-[40%] rounded-xl'>
         <MdClose className='absolute text-3xl cursor-pointer right-4 top-2 text-gray-400' onClick={()=>{setShowConnectionCard(false)}} />
@@ -33,6 +34,7 @@ const DetailCard = ({userDetail,setShowConnectionCard}) => {
         </div>
       
     </motion.div>
+    
   )
 }
 

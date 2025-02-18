@@ -30,8 +30,6 @@ const UserCard = ({user}) => {
     transition={{
      duration:0.5,
      
-     
-     
     }}
     className="card bg-base-300 w-[85%]   md:w-[20%] h-[70%] md:h-[80%] shadow-sm  ">
   <div className='h-[50%]'>
