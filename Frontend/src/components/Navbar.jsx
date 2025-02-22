@@ -47,11 +47,11 @@ const Navbar = () => {
   </div>
   {isAuthenticated &&
   <div className={`${togglemenu? "absolute z-10 left-5 top-14 p-3 flex flex-col gap-3 w-40":"hidden md:flex"}    md:gap-6 mr-10 bg-[#191E24]  rounded-xl text-base font-sans font-medium `}  >
-   <Link to="/" onClick={handleTabClick}> <h2 className={` px-3 py-0.5 rounded-xl
+   <Link to="/" onClick={handleTabClick}> <h2 className={` px-3 py-0.5 rounded-xl hover:bg-gray-600
     ${path.pathname ==="/" ? "bg-gray-600":""}`}>Home</h2></Link>
-    <Link to="/feed" onClick={handleTabClick}><h2 className={` px-4 py-0.5 rounded-xl
+    <Link to="/feed" onClick={handleTabClick}><h2 className={` px-4 py-0.5 rounded-xl hover:bg-gray-600
     ${path.pathname ==="/feed" ? "bg-gray-600":""}`}>Feed</h2></Link>
-     <Link to="/chats" onClick={handleTabClick}><h2 className={` px-4 py-0.5 rounded-xl
+     <Link to="/chats" onClick={handleTabClick}><h2 className={` px-4 py-0.5 rounded-xl hover:bg-gray-600
     ${path.pathname.startsWith("/chats" ) ? "bg-gray-600":""}`}>Chats</h2></Link>
     
   </div>}
@@ -73,10 +73,10 @@ const Navbar = () => {
         tabIndex={0}
         className="menu menu-sm  bg-base-200  rounded-box z-1 mt-3 w-52 p-2 shadow flex gap-1 absolute right-5 top-10">
        <Link to="/profile" onClick={()=>setProfileMenu(!profilemenu)} >
-        <li className={`px-2 py-0.5 rounded-lg text-base cursor-pointer ${path.pathname ==="/profile" ? "bg-gray-600":""}`}>My Profile   </li></Link>
-       <Link to="/connections" onClick={()=>setProfileMenu(!profilemenu)}> <li className={` px-2 py-0.5 rounded-lg text-base cursor-pointer ${path.pathname ==="/connections" ? "bg-gray-600":""}`}>Connections</li></Link>
-        <Link to="/requests" onClick={()=>setProfileMenu(!profilemenu)}><li className={`px-2 py-0.5 rounded-lg text-base cursor-pointer ${path.pathname ==="/requests" ? "bg-gray-600":""}`}>Requests</li></Link>
-       <li className=' px-2 rounded-lg text-base cursor-pointer' onClick={handleLogout}>Logout</li>  
+        <li className={`px-2 py-0.5 rounded-lg text-base cursor-pointer hover:bg-gray-600 ${path.pathname ==="/profile" ? "bg-gray-600":""}`}>My Profile   </li></Link>
+       <Link to="/connections" onClick={()=>setProfileMenu(!profilemenu)}> <li className={` px-2 py-0.5 rounded-lg text-base cursor-pointer hover:bg-gray-600 ${path.pathname ==="/connections" ? "bg-gray-600":""}`}>Connections</li></Link>
+        <Link to="/requests" onClick={()=>setProfileMenu(!profilemenu)}><li className={`px-2 py-0.5 rounded-lg text-base cursor-pointer hover:bg-gray-600 ${path.pathname ==="/requests" ? "bg-gray-600":""}`}>Requests</li></Link>
+       <li className=' px-2 rounded-lg text-base cursor-pointer hover:bg-gray-600' onClick={handleLogout}>Logout</li>  
       </ul>}
     </div>
   </div>
