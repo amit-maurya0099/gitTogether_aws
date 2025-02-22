@@ -71,4 +71,25 @@ const getFeedData=async(req,res)=>{
     res.status(400).json({message:error.message})
    }
 }
-module.exports={getConnections,getRequests,getFeedData}
+const getConnectionById=async(req,res)=>{
+        const {id}=req.params;
+    try {
+        if(!id){
+         throw new Error("Invalid Id")
+        }
+        const connection=await User.findById(id);
+        if(!connection){
+            throw new Error("No Connection found")
+        }
+        res.status(200).json(connection);
+       
+        
+    } catch (error) {
+          return res.status(404).json({message:error.message})
+         
+    }
+
+
+}
+
+module.exports={getConnections,getRequests,getFeedData,getConnectionById}
