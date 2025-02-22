@@ -1,5 +1,6 @@
 const socket=require("socket.io");
 const crypto=require('crypto');
+const Message =require("./models/message_model");
 
 const getSecureRoomId=(userId,targetUserId)=>{
      return crypto.createHash('sha256').update([userId,targetUserId].sort().join("_")).digest("hex")
@@ -16,20 +17,24 @@ const initializeSocket=(server)=>{
       
       io.on("connection",(socket)=>{
 
-        socket.on("joinChat",({firstName,userId,targetUserId})=>{
+        socket.on("joinChat",async({firstName,userId,targetUserId})=>{
           const roomId=getSecureRoomId(userId,targetUserId);
           socket.join(roomId);
-          console.log(firstName + " joined room : " + roomId);
-
-
+          // console.log(firstName + " joined room : " + roomId);
+          const messages = await Message.find({ roomId }).sort({ timestamp: 1 });
+           socket.emit('prevMessages',messages);
+           
         })
-        socket.on("sendMessage",({name,senderId,targetUserId,text})=>{
+        socket.on("sendMessage",async({name,senderId,targetUserId,text,timestamp})=>{
+          
           const roomId=getSecureRoomId(senderId,targetUserId);
           socket.join(roomId);
-          io.to(roomId).emit("messageReceived",{name,text,senderId});
+          const newMessage=new Message({name,roomId, senderId, targetUserId, text,timestamp});
+          await newMessage.save();
+          io.to(roomId).emit("messageReceived",{name,text,senderId,timestamp});
         })
         socket.on("disconnect",()=>{
-          console.log(`User ${socket.id} disconnected`);
+          // console.log(`User ${socket.id} disconnected`);
         })
       
       })
