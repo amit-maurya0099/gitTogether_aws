@@ -41,8 +41,8 @@ const Navbar = () => {
       
       
   <div className='flex gap-1 items-center '>
-    {isAuthenticated && <div className='md:hidden'><IoMenu className='text-4xl' onClick={handleToggleMenu}/></div>}
-    <img src={Logo} className=" h-8 md:h-10 "></img>
+    {isAuthenticated && <div className='md:hidden'><IoMenu className='text-4xl text-white' onClick={handleToggleMenu}/></div>}
+    <img src={Logo} className=" h-8 md:h-10  "></img>
   </div>
   {isAuthenticated &&
   <div className={`${togglemenu? "absolute z-10 left-5 top-14 p-3 flex flex-col gap-3 w-40":"hidden md:flex"}    md:gap-6 mr-10 bg-[#191E24]  rounded-xl text-base font-sans font-medium `}  >
@@ -56,7 +56,7 @@ const Navbar = () => {
   </div>}
   <div className="flex gap-6 mr-2 items-center" >
     {/* <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" /> */}
-  { user && <p className='text-lg font-serif text-white'>Welcome, {user.firstName}</p>}
+  { user && <p className='text-sm md:text-lg font-serif text-white'>Welcome, {user.firstName}</p>}
     <div className="dropdown dropdown-end cursor-pointer " onClick={()=>{ if(isAuthenticated) setProfileMenu(!profilemenu)}} >
     
       <div tabIndex={10} role="button" className="btn btn-ghost btn-circle avatar">

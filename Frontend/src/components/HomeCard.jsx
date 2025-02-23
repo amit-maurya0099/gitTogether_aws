@@ -8,11 +8,11 @@ const HomeCard = ({setCurrentView}) => {
   const {isAuthenticated}=useSelector((store)=>store.user);
   const navigate=useNavigate();
   return (
-    <div className='absolute mt-6 md:mt-4 p-6 bg-gray-900 rounded-3xl w-[90%] md:w-[40%]'>
+    <div className='absolute mt-6 md:mt-4 p-6 bg-gray-900 rounded-3xl w-[90%] md:w-[40%] text-white'>
     <div className=" flex items-center justify-center ">
  
   <div className="text-center space-y-6 md:space-y-2">
-    <h1 className="text-4xl font-bold">
+    <h1 className="text-4xl font-bold ">
       Welcome, Developers! 🚀
     </h1>
 

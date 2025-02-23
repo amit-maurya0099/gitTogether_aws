@@ -46,7 +46,7 @@ const Login = ({setCurrentView}) => {
    }
   
   return ( 
-    <div className='flex justify-center items-center mt-28 w-[90%] md:w-[25%] h-[50vh]  md:h-[60vh] md:mt-20 rounded-2xl no-scrollbar'>
+    <div className='flex justify-center items-center mt-28 w-[90%] md:w-[25%] h-[55vh]  md:h-[60vh] md:mt-20 rounded-2xl no-scrollbar  text-white'>
       {isLoading?<Loader/>:
     <div className="card bg-[#101828] shadow-sm  w-full h-full ">
       <h2 className='text-2xl font-bold text-center my-4 underline '>Login</h2>
@@ -54,13 +54,13 @@ const Login = ({setCurrentView}) => {
        <div className='w-[90%]' >
         <fieldset className="fieldset">
         <legend className="fieldset-legend text-lg">Email</legend>
-        <input type="text" name="email" value={user.email} className="input w-full" placeholder="Enter your email" onChange={loginDataChange}/>
+        <input type="text" name="email" value={user.email} className="input w-full bg-gray-600" placeholder="Enter your email" onChange={loginDataChange}/>
         </fieldset>
        </div>
        <div className='w-[90%]' >
         <fieldset className="fieldset">
         <legend className="fieldset-legend text-lg">Password</legend> 
-        <input type="text" className="input w-full" name='password' value={user.password} placeholder="Enter your password" onChange={loginDataChange} />
+        <input type="text" className="input w-full bg-gray-600" name='password' value={user.password} placeholder="Enter your password" onChange={loginDataChange} />
         </fieldset>
        </div>
        <div className="card-actions flex justify-center w-[90%] mt-6" >

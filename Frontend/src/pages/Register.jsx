@@ -86,7 +86,7 @@ const Register = ({setCurrentView}) => {
 
 
   return (
-      <div className='w-[90%] md:w-[35%] h-[70vh] mt-10 bg-[#101828] rounded-xl shadow-2xl no-scrollbar'>
+      <div className='w-[90%] md:w-[35%] h-[70vh] mt-10 bg-[#101828] rounded-xl shadow-2xl no-scrollbar text-white'>
     
 
          <h2 className='text-2xl font-bold text-center my-4 underline'>Register</h2>

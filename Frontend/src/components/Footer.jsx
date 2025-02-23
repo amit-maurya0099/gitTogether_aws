@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <footer className="footer flex flex-col  md:footer-horizontal  footer-center bg-base-200 text-base-content rounded p-10  ">
+    <footer className="footer flex flex-col  md:footer-horizontal  footer-center  rounded p-10 bg-[#191E24] text-white ">
     <nav className="md:grid md:grid-flow-col gap-4">
       <a className="link link-hover">About us</a>
       <a className="link link-hover">Contact</a>
@@ -53,4 +53,4 @@ const Footer = () => {
   )
 }
 
-export default Footer
+export default Footer;
