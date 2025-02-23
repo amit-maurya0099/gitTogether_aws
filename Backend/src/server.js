@@ -18,7 +18,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(
   cors({
-    origin: ["http://localhost:5173", "http://15.206.194.35"],
+    origin: ["http://localhost:5173", "http://15.206.194.35","https://gittogether-git-main-amit-mauryas-projects-4ea5de61.vercel.app/"],
     credentials: true,
   })
 );

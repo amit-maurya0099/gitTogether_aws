@@ -30,7 +30,7 @@ const Login = ({setCurrentView}) => {
    myForm.set('password',user.password)
    try {
      dispatch(setIsLoading(true)); 
-    const response=await axios.post(import.meta.env.VITE_BASE_URL+'/auth/login',myForm,{withCredentials: true });
+    const response=await axios.post(`${import.meta.env.VITE_BASE_URL}/auth/login`,myForm,{withCredentials: true });
     const data=response.data;
     navigate("/feed")
     toast.success(data.message);
@@ -39,6 +39,7 @@ const Login = ({setCurrentView}) => {
       
    } catch (error) {
     dispatch(setIsLoading(false)); 
+     console.log(error)
      toast.error(error.response.data.message);
      
    }
