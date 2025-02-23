@@ -6,26 +6,7 @@ import Loader from "../components/Loader"
 
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated } = useSelector((store) => store.user);
-  const [loading, setLoading] = useState(true); // Track loading state
-  const IsLoader=useRef(false);
-  
-
-  useEffect(() => {
-   
-    const timeout = setTimeout(() => {
-      setLoading(false);
-    }, 100); 
-
-    return () => clearTimeout(timeout); 
-  }, []);
-
-  if (loading) {
-       if(IsLoader.current ===true) return;
-       IsLoader.current = true
-     
-       return<div className="min-h-screen max-w-screen flex items-center justify-center"> <Loader/> </div>
-  }
-
+ 
   if (!isAuthenticated) {
     return <Error />;
   }
