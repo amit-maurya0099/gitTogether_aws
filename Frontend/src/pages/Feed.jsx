@@ -28,12 +28,13 @@ const Feed = () => {
     getFeedData();
   },[])
 
-   if(!feed || feed.length===0) return <div className='absolute top-[40%] left-[30%] md:left-[45%] text-xl '>No User found</div>;
+   
 
   return (
     <div className="h-[90vh] flex justify-center items-center "
     style={{backgroundImage:`url(${BGImg})`,backgroundSize:"cover",backgroundAttachment:'fixed'}}>
-      {isLoading?<Loader/>:
+      {
+      isLoading?<Loader/>:
       <UserCard user={feed[0]}/>}
   
     </div>
