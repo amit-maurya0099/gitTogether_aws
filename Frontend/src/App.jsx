@@ -22,16 +22,17 @@ const App = () => {
 
   
   const fetchUser=async()=>{
+    
  try {
     setIsLoading(true);
    if(isAuthenticated ) return ;
-   const response=await axios.get(import.meta.env.VITE_import.meta.env.VITE_BASE_URL+'/profile/view',{withCredentials:true})
+    const response=await axios.get(`${import.meta.env.VITE_BASE_URL}/profile/view`,{withCredentials:true});
      const data=response.data;
      dispatch(addUser(data.user));
-     setIsLoading(false);
+     dispatch(setIsLoading(false));
       
  } catch (error) {
-  setIsLoading(false);
+  dispatch(setIsLoading(false));
    if(error.status===401){
        console.log("Unauthorised Access")
    }else{
@@ -41,11 +42,8 @@ const App = () => {
    
    useEffect(()=>{
      fetchUser();
-   },[isAuthenticated])
+   },[isAuthenticated]);
 
-
-  
-   
   return (
     <>
     <Navbar/>
