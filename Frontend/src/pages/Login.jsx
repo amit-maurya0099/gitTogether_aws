@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import {useDispatch, useSelector} from "react-redux";
 import { addUser, setIsLoading } from '../Utils/userSlice';
-import { BASE_URL } from '../Utils/constants';
 import Loader from '../components/Loader';
 
 
@@ -31,7 +30,7 @@ const Login = ({setCurrentView}) => {
    myForm.set('password',user.password)
    try {
      dispatch(setIsLoading(true)); 
-    const response=await axios.post(BASE_URL+'/auth/login',myForm,{withCredentials: true });
+    const response=await axios.post(import.meta.env.VITE_BASE_URL+'/auth/login',myForm,{withCredentials: true });
     const data=response.data;
     navigate("/feed")
     toast.success(data.message);

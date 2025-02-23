@@ -4,7 +4,6 @@ import axios from 'axios'
 import {toast} from 'react-toastify'
 import { useDispatch, useSelector } from 'react-redux'
 import { addUser,setIsLoading } from '../Utils/userSlice'
-import { BASE_URL } from '../Utils/constants'
 
 const Register = ({setCurrentView}) => {
     const navigate=useNavigate();
@@ -69,7 +68,7 @@ const Register = ({setCurrentView}) => {
     
       try {    
             dispatch(setIsLoading(true));
-        const response=await axios.post(BASE_URL+"/auth/signup",myForm,{withCredentials: true });
+        const response=await axios.post(import.meta.env.VITE_BASE_URL+"/auth/signup",myForm,{withCredentials: true });
          const data=response.data;
          dispatch(setIsLoading(false)); 
          navigate('/feed');

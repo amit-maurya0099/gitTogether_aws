@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { createSocketConnection } from '../Utils/socket';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { BASE_URL } from '../Utils/constants';
+
 import {toast} from "react-toastify"
 
 const ChatComponent = () => {
@@ -19,7 +19,7 @@ const ChatComponent = () => {
 
    const getConnection=async()=>{
     try {
-      const response= await axios.get(BASE_URL + `/user/connection/${id}`,{withCredentials:true});
+      const response= await axios.get(import.meta.env.VITE_BASE_URL + `/user/connection/${id}`,{withCredentials:true});
        const data=response.data;
        setConnection(data);  
        

@@ -4,7 +4,6 @@ import { FaGithubSquare } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa6";
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import { BASE_URL } from '../Utils/constants';
 import { toast } from 'react-toastify';
 import { addUser, setIsLoading } from '../Utils/userSlice';
 import Loader from '../components/Loader';
@@ -33,7 +32,7 @@ const EditProfile =({user,setEditProfile}) => {
            myForm.append("avatar",avatar)
         try {
             dispatch(setIsLoading(true));
-         const response=await axios.patch(BASE_URL+ "/profile/edit",myForm,{withCredentials:true,
+         const response=await axios.patch(import.meta.env.VITE_BASE_URL+ "/profile/edit",myForm,{withCredentials:true,
             headers: { "Content-Type": "multipart/form-data" },
          });
          const data=response.data;

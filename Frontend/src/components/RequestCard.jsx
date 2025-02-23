@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import {BASE_URL} from "../Utils/constants";
 import {toast} from "react-toastify"
 import {useDispatch} from "react-redux"
 import { removeRequest } from '../Utils/requestSlice';
@@ -14,7 +13,7 @@ const RequestCard = ({request}) => {
   const handleButtonClick=async(e)=>{
     const status=e.target.name;
     try {
-      const url=BASE_URL+`/connection/request/review/${status}/${request._id}`
+      const url=import.meta.env.VITE_BASE_URL+`/connection/request/review/${status}/${request._id}`
       const response=await axios.post(url,{},{withCredentials:true});
       toast.success(response.data.message);
       dispatch(removeRequest(request._id))

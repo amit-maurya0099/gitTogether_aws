@@ -5,7 +5,6 @@ import axios from 'axios'
 import {Link, useLocation, useNavigate, useParams} from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux'
 import { removeUser } from '../Utils/userSlice'
-import { BASE_URL } from '../Utils/constants'
 import { IoMenu } from "react-icons/io5";
 const Navbar = () => {
   const navigate=useNavigate();
@@ -19,7 +18,7 @@ const Navbar = () => {
   const handleLogout=async()=>{
     try {
      
-      const response=await axios.post(BASE_URL+'/auth/logout',{},{withCredentials:true});
+      const response=await axios.post(import.meta.env.VITE_BASE_URL+'/auth/logout',{},{withCredentials:true});
       const data=response.data;
       toast.success(data.message)
       navigate('/');

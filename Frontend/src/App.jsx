@@ -4,7 +4,7 @@ import Body from './components/Body';
 import Navbar from './components/Navbar';
 import Feed from './pages/Feed';
 import axios from 'axios';
-import { BASE_URL } from './Utils/constants';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { addUser } from './Utils/userSlice';
 import ProtectedRoute from './Utils/ProtectedRoute';
@@ -25,7 +25,7 @@ const App = () => {
  try {
     setIsLoading(true);
    if(isAuthenticated ) return ;
-   const response=await axios.get(BASE_URL+'/profile/view',{withCredentials:true})
+   const response=await axios.get(import.meta.env.VITE_import.meta.env.VITE_BASE_URL+'/profile/view',{withCredentials:true})
      const data=response.data;
      dispatch(addUser(data.user));
      setIsLoading(false);
