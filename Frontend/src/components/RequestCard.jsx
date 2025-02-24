@@ -26,7 +26,7 @@ const RequestCard = ({request}) => {
   }
 
   return (
-    <div className='h-[150px] mx-[1%] md:mx-[10%] border border-dashed  my-4 px-1 md:px-4 '>
+    <div className='h-[150px] mx-[1%] md:mx-[10%] border border-dashed  my-4 px-1 md:px-4 text-white '>
              <div className='h-full w-full flex justify-between items-center'>
             
                <h2 className='font-bold'>{request.fromUserId.firstName+ " "+ request.fromUserId.lastName}</h2>

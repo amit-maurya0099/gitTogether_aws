@@ -68,7 +68,7 @@ const EditProfile =({user,setEditProfile}) => {
 
     
   return (
-    <div className='h-[90vh] w-screen flex justify-center'>
+    <div className='h-[90vh] w-screen flex justify-center text-white'>
         {isLoading ? <Loader/>:
         <motion.div
         initial={{ opacity: 0, scale: 0.5, x: 100, y: 100 }}
@@ -109,7 +109,7 @@ const EditProfile =({user,setEditProfile}) => {
                  name="avatar" onChange={handleAvatarChange} ></input>
                 </div>
                 <div className='flex justify-center mt-6'>
-                    <button className='py-1 px-6 bg-blue-800 cursor-pointer' type="submit">Save Profile</button>
+                    <button className='py-1 px-6 bg-cyan-600 cursor-pointer' type="submit">Save Profile</button>
                 </div>
 
 

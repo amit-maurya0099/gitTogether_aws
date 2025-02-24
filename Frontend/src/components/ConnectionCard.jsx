@@ -8,7 +8,7 @@ const ConnectionCard = ({connection}) => {
    
   return (
     
-    <div className='h-[100px] md:h-[150px] mx-[2%] md:mx-[10%] border border-dashed  my-4 px-2 md:px-4 '>
+    <div className='h-[100px] md:h-[150px] mx-[2%] md:mx-[10%] border border-dashed  my-4 px-2 md:px-4 text-white'>
              <div className='h-full w-full flex justify-between items-center'>
                <img src={connection.avatar.url} alt="/" className='rounded-full object-cover w-[60px] h-[60px] md:w-[100px] md:h-[100px]'></img>
                <div className='flex flex-col md:flex md:flex-row md:gap-6  ml-2'>

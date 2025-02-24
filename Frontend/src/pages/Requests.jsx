@@ -35,7 +35,7 @@ const fetchRequests=async()=>{
  },[])   
 
 
-   if(!requests || requests.length ===0) return <div className='absolute top-[40%] left-[30%] md:left-[45%] text-xl'>No Request found</div>;
+   if(!requests || requests.length ===0) return <div className='absolute top-[40%] left-[30%] md:left-[45%] text-xl bg-[#191E24]'>No Request found</div>;
   
 
   return (
