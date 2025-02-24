@@ -86,8 +86,8 @@ const ChatComponent = () => {
 
   
   return (
-    <div className='h-full w-full  '>
-      <div className=' h-[10%] bg-gray-600 text-white pl-2  shadow-2xl'>
+    <div className='h-full w-full '>
+      <div className='h-[8%]  md:h-[10%] bg-gray-600 text-white pl-2  shadow-2xl'>
         <div className='flex items-center gap-4 font-semibold'>
           <img src={connection?.avatar?.url} className=' size-12 object-cover rounded-full'></img>
           <h2>{connection?.firstName + " " + connection?.lastName}</h2>
@@ -104,7 +104,7 @@ const ChatComponent = () => {
               <h2 className={` font-semibold text-base text-cyan-400`}>{msg.name}</h2>
               <p className='text-white text-base'>{msg?.text}</p>
               
-              <h3 className='text-white'>{`${new Date(msg?.timestamp).getHours()}` + ":" +`${new Date(msg?.timestamp).getMinutes()}` }</h3>
+              <h3>{`${new Date(msg?.timestamp).getHours()}` + ":" +`${new Date(msg?.timestamp).getMinutes()}` }</h3>
 
             </div>
           )
@@ -114,7 +114,7 @@ const ChatComponent = () => {
 
       </div>
 
-      <div className='h-[15%]   w-[100%] flex gap-2  px-[5%] md:pt-4 pt-6 border-t border-gray-500 '>
+      <div className=' h-[15%]   w-[100%] flex gap-2  px-[5%] md:pt-4 pt-6 border-t border-gray-300 '>
         <input className='w-[80%] md:w-full md:h-[60%] h-[70%] rounded-xl px-4 text-white '
           placeholder='Write your message here'
           onChange={(e) => setNewMessage(e.target.value)}

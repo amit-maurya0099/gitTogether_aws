@@ -13,7 +13,7 @@ const Chats = () => {
   const navigate = useNavigate();
   const { connections } = useSelector((store) => store.connections);
   const params = useParams();
-  const [openSideBar, setOpenSideBar] = useState(false);
+  const [openSideBar, setOpenSideBar] = useState(params?.id? true:false);
 
   const fetchConnections = async () => {
 

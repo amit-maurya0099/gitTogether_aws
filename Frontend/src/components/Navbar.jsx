@@ -70,7 +70,7 @@ const Navbar = () => {
       </div>
      {user && profilemenu && <ul
         tabIndex={0}
-        className=" menu menu-sm  bg-[#191E24] text-white  rounded-box z-1 mt-3 w-52 p-2 shadow flex gap-1 absolute right-5 top-10">
+        className=" menu menu-sm  bg-[#191E24] text-white  rounded-box z-1 mt-3 w-52 p-2 shadow flex gap-1 absolute right-0 top-10">
        <Link to="/profile" onClick={()=>setProfileMenu(!profilemenu)} >
         <li className={`px-2 py-0.5 rounded-lg text-base cursor-pointer hover:bg-gray-600 ${path.pathname ==="/profile" ? "bg-gray-600":""}`}>My Profile   </li></Link>
        <Link to="/connections" onClick={()=>setProfileMenu(!profilemenu)}> <li className={` px-2 py-0.5 rounded-lg text-base cursor-pointer hover:bg-gray-600 ${path.pathname ==="/connections" ? "bg-gray-600":""}`}>Connections</li></Link>

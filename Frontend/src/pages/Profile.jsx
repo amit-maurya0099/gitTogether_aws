@@ -25,7 +25,7 @@ const Profile = () => {
          
         }}
 
-      className='bg-[#191E24]  md:mt-0 h-[95%] w-[95%] md:w-[25%] rounded-2xl text-white'>
+      className='bg-[#191E24]  md:mt-0 h-[80%] w-[95%] md:w-[25%] rounded-2xl text-white'>
          <div className='h-[40%] border-b border-gray-400 rounded-b-2xl flex flex-col items-center gap-2 md:gap-4'>
           <img src={user?.avatar.url} alt="profileImg" className='rounded-full size-20 md:size-24 mt-4' ></img>
           <h2 className='text-base md:text-lg font-semibold'>{user?.firstName + " " + user?.lastName}</h2>
