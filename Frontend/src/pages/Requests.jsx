@@ -35,11 +35,11 @@ const fetchRequests=async()=>{
  },[])   
 
 
-   if(!requests || requests.length ===0) return <div className='absolute top-[40%] left-[30%] md:left-[45%] text-xl text-white '>No Request found</div>;
+   // if(!requests || requests.length ===0) return <div className='absolute top-[40%] left-[30%] md:left-[45%] text-xl text-white '>No Request found</div>;
   
 
   return (
-     <div className='h-[80vh] md:h-[90vh] px-[3%] md:px-[10%] md:py-[2%] py-[5%] bg-[#191E24]'>
+     <div className='h-[90vh] px-[3%] md:px-[10%] md:py-[2%] py-[5%] bg-[#191E24]'>
       {isLoading? <Loader/> :
        <motion.div
          initial={{opacity:0,scale:0.5}}
@@ -49,13 +49,16 @@ const fetchRequests=async()=>{
          }}
        
       className=' h-full w-full bg-[#191E24] py-4 '>
+        {requests?.length !=0 ? <>
          <div className='py-2 w-full mb-4  '>
             <h2 className='font-semibold  text-2xl md:text-3xl text-center underline '> Connection Requests</h2>
          </div>
+         
          <div className='h-[80%] overflow-y-auto no-scrollbar '>
         
-           {requests.map((request)=><RequestCard request={request} key={request._id}/>)}
-         </div>
+           {requests?.map((request)=><RequestCard request={request} key={request._id}/>)}
+         </div></>:
+         <div className=' h-full flex justify-center items-center'>No request found</div>}
        
          
 

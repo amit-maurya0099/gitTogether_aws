@@ -45,16 +45,18 @@ const fetchConnections=async()=>{
          duration:0.5
       }}
       className=' h-full w-full py-4 '>
+       {connections?.length !=0 ?<>
+
          <div className='py-2 w-full mb-4  '>
             <h2 className='font-semibold text-2xl md:text-3xl text-center underline text-white'>My Connections</h2>
          </div>
          <div className='h-[80%] overflow-y-auto no-scrollbar '>
-             { connections?.length !=0 ?
-            connections?.map((connection)=> <ConnectionCard connection={connection} key={connection._id}/>):
-            <div  >No Connection found</div>}
+             
+            {connections?.map((connection)=> <ConnectionCard connection={connection} key={connection._id}/>)}
+            
          </div>
-         
-
+         </>:<div className='h-full flex justify-center items-center'>No connection found</div> }
+ 
      </motion.div>}
      </div>
     
