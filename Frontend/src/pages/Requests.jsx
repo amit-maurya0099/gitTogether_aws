@@ -35,11 +35,11 @@ const fetchRequests=async()=>{
  },[])   
 
 
-   if(!requests || requests.length ===0) return <div className='absolute top-[40%] left-[30%] md:left-[45%] text-xl bg-[#191E24]'>No Request found</div>;
+   if(!requests || requests.length ===0) return <div className='absolute top-[40%] left-[30%] md:left-[45%] text-xl text-white '>No Request found</div>;
   
 
   return (
-     <div className='h-[80vh] md:h-[90vh] px-[3%] md:px-[10%] md:py-[2%] py-[5%] '>
+     <div className='h-[80vh] md:h-[90vh] px-[3%] md:px-[10%] md:py-[2%] py-[5%] bg-[#191E24]'>
       {isLoading? <Loader/> :
        <motion.div
          initial={{opacity:0,scale:0.5}}

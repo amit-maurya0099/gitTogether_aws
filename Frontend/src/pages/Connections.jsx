@@ -36,7 +36,7 @@ const fetchConnections=async()=>{
 
 
   return (
-     <div className='h-[90vh] px-[2%] md:px-[10%] md:py-[2%] py-[5%] '>
+     <div className='h-[90vh] px-[2%] md:px-[10%] md:py-[2%] py-[5%] bg-[#191E24]'>
       {isLoading? <Loader/>:
       <motion.div 
       initial={{opacity:0,scale:0.5}} 
@@ -44,7 +44,7 @@ const fetchConnections=async()=>{
       transition={{
          duration:0.5
       }}
-      className=' h-full w-full bg-[#191E24] py-4 '>
+      className=' h-full w-full py-4 '>
          <div className='py-2 w-full mb-4  '>
             <h2 className='font-semibold text-2xl md:text-3xl text-center underline text-white'>My Connections</h2>
          </div>

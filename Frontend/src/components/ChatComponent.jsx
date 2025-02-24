@@ -88,7 +88,7 @@ const ChatComponent = () => {
   return (
     <div className='h-full w-full  '>
       <div className=' h-[10%] bg-gray-600 text-white pl-2  shadow-2xl'>
-        <div className='flex gap-4 font-semibold'>
+        <div className='flex items-center gap-4 font-semibold'>
           <img src={connection?.avatar?.url} className=' size-12 object-cover rounded-full'></img>
           <h2>{connection?.firstName + " " + connection?.lastName}</h2>
         </div>
@@ -104,7 +104,7 @@ const ChatComponent = () => {
               <h2 className={` font-semibold text-base text-cyan-400`}>{msg.name}</h2>
               <p className='text-white text-base'>{msg?.text}</p>
               
-              <h3>{`${new Date(msg?.timestamp).getHours()}` + ":" +`${new Date(msg?.timestamp).getMinutes()}` }</h3>
+              <h3 className='text-white'>{`${new Date(msg?.timestamp).getHours()}` + ":" +`${new Date(msg?.timestamp).getMinutes()}` }</h3>
 
             </div>
           )
