@@ -41,20 +41,20 @@ const Navbar = () => {
       
       
   <div className='flex gap-1 items-center '>
-    {isAuthenticated && <div className='md:hidden'><IoMenu className='text-4xl text-white' onClick={handleToggleMenu}/></div>}
-    <img src={Logo} className=" h-8 md:h-10  "></img>
+    {isAuthenticated && <div className='md:hidden'><IoMenu className=' text-3xl md:text-4xl text-white' onClick={handleToggleMenu}/></div>}
+    <img src={Logo} className=" h-6 md:h-10  "></img>
   </div>
   {isAuthenticated &&
-  <div className={`${togglemenu? "absolute z-10 left-5 top-14 p-3 flex flex-col gap-3 w-40":"hidden md:flex"}    md:gap-6 mr-10 bg-[#191E24]  rounded-xl text-base font-sans font-medium `}  >
-   <Link to="/" onClick={handleTabClick}> <h2 className={` px-3 py-0.5 rounded-xl hover:bg-gray-600
+  <div className={`${togglemenu? " text-white absolute z-10 left-0 top-14 p-3 flex flex-col gap-3 w-40":"hidden md:flex"}    md:gap-6 mr-10 bg-[#191E24]  rounded-xl text-base font-sans font-medium `}  >
+   <Link to="/" onClick={handleTabClick}> <h2 className={`text-sm md:text-base px-4 py-0.5 rounded-xl hover:bg-gray-600
     ${path.pathname ==="/" ? "bg-gray-600":""}`}>Home</h2></Link>
-    <Link to="/feed" onClick={handleTabClick}><h2 className={` px-4 py-0.5 rounded-xl hover:bg-gray-600
+    <Link to="/feed" onClick={handleTabClick}><h2 className={` text-sm md:text-base px-4 py-0.5 rounded-xl hover:bg-gray-600
     ${path.pathname ==="/feed" ? "bg-gray-600":""}`}>Feed</h2></Link>
-     <Link to="/chats" onClick={handleTabClick}><h2 className={` px-4 py-0.5 rounded-xl hover:bg-gray-600
+     <Link to="/chats" onClick={handleTabClick}><h2 className={` text-sm md:text-base px-4 py-0.5 rounded-xl hover:bg-gray-600
     ${path.pathname.startsWith("/chats" ) ? "bg-gray-600":""}`}>Chats</h2></Link>
     
   </div>}
-  <div className="flex gap-6 mr-2 items-center" >
+  <div className="flex gap-2 md:gap-6 mr-2 items-center" >
     {/* <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" /> */}
   { user && <p className='text-sm md:text-lg font-serif text-white'>Welcome, {user.firstName}</p>}
     <div className="dropdown dropdown-end cursor-pointer " onClick={()=>{ if(isAuthenticated) setProfileMenu(!profilemenu)}} >
@@ -70,7 +70,7 @@ const Navbar = () => {
       </div>
      {user && profilemenu && <ul
         tabIndex={0}
-        className="menu menu-sm  bg-base-200  rounded-box z-1 mt-3 w-52 p-2 shadow flex gap-1 absolute right-5 top-10">
+        className=" menu menu-sm  bg-[#191E24] text-white  rounded-box z-1 mt-3 w-52 p-2 shadow flex gap-1 absolute right-5 top-10">
        <Link to="/profile" onClick={()=>setProfileMenu(!profilemenu)} >
         <li className={`px-2 py-0.5 rounded-lg text-base cursor-pointer hover:bg-gray-600 ${path.pathname ==="/profile" ? "bg-gray-600":""}`}>My Profile   </li></Link>
        <Link to="/connections" onClick={()=>setProfileMenu(!profilemenu)}> <li className={` px-2 py-0.5 rounded-lg text-base cursor-pointer hover:bg-gray-600 ${path.pathname ==="/connections" ? "bg-gray-600":""}`}>Connections</li></Link>

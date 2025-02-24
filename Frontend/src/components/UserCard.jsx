@@ -38,7 +38,7 @@ const UserCard = ({user}) => {
       className='object-cover w-full h-full rounded-t-xl '
        />
   </div>
-  <div className="card-body text-lg flex flex-col gap-3 items-center">
+  <div className="card-body text-lg flex flex-col gap-3 items-center bg-[#15191E]">
     <h2 className="card-title font-bold ">{user?.firstName + " "+ user?.lastName}</h2>
      <h2 className='text-base font-semibold'>{user?.about}</h2>
     <div className='flex gap-4 justify-center ' >

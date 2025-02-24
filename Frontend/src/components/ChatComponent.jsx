@@ -86,7 +86,7 @@ const ChatComponent = () => {
 
   
   return (
-    <div className='h-full w-full p-2 '>
+    <div className='h-full w-full  '>
       <div className=' h-[10%] bg-gray-600 text-white pl-2  shadow-2xl'>
         <div className='flex gap-4 font-semibold'>
           <img src={connection?.avatar?.url} className=' size-12 object-cover rounded-full'></img>
@@ -96,13 +96,13 @@ const ChatComponent = () => {
 
       </div>
       
-      <div className='h-[80%] md:h-[75%] overflow-y-scroll no-scrollbar py-4'>
+      <div className='h-[75%] overflow-y-scroll no-scrollbar py-4'>
         {messages?.map((msg, index) => {
           return (
             <div className={` my-2 w-fit py-1 px-2 rounded-lg  ${msg.senderId === userId ? 'ml-auto text-right bg-gray-700 ' : 'mr-auto text-left bg-gray-900'
               }`} key={index}>
-              <h2 className={` font-semibold  text-white`}>{msg.name}</h2>
-              <p >{msg?.text}</p>
+              <h2 className={` font-semibold text-base text-cyan-400`}>{msg.name}</h2>
+              <p className='text-white text-base'>{msg?.text}</p>
               
               <h3>{`${new Date(msg?.timestamp).getHours()}` + ":" +`${new Date(msg?.timestamp).getMinutes()}` }</h3>
 
@@ -114,8 +114,8 @@ const ChatComponent = () => {
 
       </div>
 
-      <div className='h-[10%] md:h-[15%]  w-[100%] flex gap-2  px-[5%] md:pt-4 pt-6 border-t border-gray-600 '>
-        <input className='w-[80%] md:w-full md:h-[60%] h-[80%] rounded-xl px-4 '
+      <div className='h-[15%]   w-[100%] flex gap-2  px-[5%] md:pt-4 pt-6 border-t border-gray-500 '>
+        <input className='w-[80%] md:w-full md:h-[60%] h-[70%] rounded-xl px-4 text-white '
           placeholder='Write your message here'
           onChange={(e) => setNewMessage(e.target.value)}
           value={newMessage}
@@ -123,7 +123,7 @@ const ChatComponent = () => {
         ></input>
         <button 
          
-        className="h-[80%] md:h-[60%] md:w-[10%] w-[20%] btn btn-dash btn-secondary cursor-pointer " onClick={sendMessage} >Send</button>
+        className="h-[70%] md:h-[60%] md:w-[10%] w-[20%] btn btn-dash btn-secondary cursor-pointer " onClick={sendMessage} >Send</button>
       </div>
 
     </div>

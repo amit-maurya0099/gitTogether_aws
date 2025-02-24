@@ -46,7 +46,7 @@ const fetchConnections=async()=>{
       }}
       className=' h-full w-full bg-[#191E24] py-4 '>
          <div className='py-2 w-full mb-4  '>
-            <h2 className='font-semibold text-3xl text-center underline '>My Connections</h2>
+            <h2 className='font-semibold text-2xl md:text-3xl text-center underline '>My Connections</h2>
          </div>
          <div className='h-[80%] overflow-y-auto no-scrollbar '>
              { connections?.length !=0 ?
