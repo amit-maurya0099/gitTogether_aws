@@ -20,7 +20,7 @@ app.set("trust proxy", 1);
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "http://15.206.194.35","https://gittogether.vercel.app"],
+    origin: ["http://localhost:5173", "http://15.206.194.35"],
     credentials: true,
   })
 );
