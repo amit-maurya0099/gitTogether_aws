@@ -7,7 +7,7 @@ const sendToken=async(user,res,statusCode,message)=>{
     const options={
         httpOnly:true,
         sameSite:"None",
-        secure:true,
+        secure:false,
         expires:new Date(Date.now()+ 24*3600*1000)
     }
     res.status(statusCode).cookie("token",token,options).json({message,user});
