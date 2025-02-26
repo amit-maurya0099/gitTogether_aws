@@ -6,7 +6,7 @@ const sendToken=async(user,res,statusCode,message)=>{
     
     const options={
         httpOnly:true,
-        sameSite:"None",
+        sameSite:"Lax",
         secure:false,
         expires:new Date(Date.now()+ 24*3600*1000)
     }
