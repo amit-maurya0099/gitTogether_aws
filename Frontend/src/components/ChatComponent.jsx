@@ -41,6 +41,7 @@ const ChatComponent = () => {
   useEffect(() => {
     if (!targetUserId) return;
     const newSocket = createSocketConnection();
+     console.log(newSocket)
     setSocket(newSocket);
     newSocket.emit("joinChat", { firstName: user.firstName, userId, targetUserId })
 
