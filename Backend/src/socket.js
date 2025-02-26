@@ -10,7 +10,7 @@ const getSecureRoomId=(userId,targetUserId)=>{
 const initializeSocket=(server)=>{
     const io=socket(server,{
         cors:{
-          origin:["http://localhost:5173","https://gittogether.vercel.app","http://51.21.2.211"]
+          origin:["http://localhost:5173","http://51.21.2.211"]
         }
       
       });
@@ -20,7 +20,7 @@ const initializeSocket=(server)=>{
         socket.on("joinChat",async({firstName,userId,targetUserId})=>{
           const roomId=getSecureRoomId(userId,targetUserId);
           socket.join(roomId);
-          console.log(firstName + " joined room : " + roomId);
+          // console.log(firstName + " joined room : " + roomId);
           const messages = await Message.find({ roomId }).sort({ timestamp: 1 });
            socket.emit('prevMessages',messages);
            
