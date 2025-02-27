@@ -18,11 +18,12 @@ const initializeSocket=(server)=>{
       });
       
       io.on("connection",(socket)=>{
-
+          
         socket.on("joinChat",async({firstName,userId,targetUserId})=>{
           const roomId=getSecureRoomId(userId,targetUserId);
           socket.join(roomId);
-          // console.log(firstName + " joined room : " + roomId);
+          console.log(roomId);
+          console.log(firstName + " joined room : " + roomId);
           const messages = await Message.find({ roomId }).sort({ timestamp: 1 });
            socket.emit('prevMessages',messages);
            
