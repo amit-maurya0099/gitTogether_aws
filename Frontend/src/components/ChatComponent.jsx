@@ -58,8 +58,6 @@ const ChatComponent = () => {
 
     return () => {
       newSocket.disconnect();
-      // newSocket.off("messageReceived", handleMessageReceived);
-      // newSocket.off("prevMessages", handlePrevMessages);
     }
   }, [userId, targetUserId]);
 

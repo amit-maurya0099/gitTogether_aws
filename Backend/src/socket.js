@@ -21,6 +21,10 @@ const initializeSocket = (server) => {
 
   console.log("✅ WebSocket Server Initialized");
 
+  io.on("connection_error", (err) => {
+    console.error("❌ WebSocket Connection Error:", err.message);
+  });
+
   io.on("connection", (socket) => {
     console.log(`🔹 User Connected: ${socket.id}`);
 
@@ -50,8 +54,8 @@ const initializeSocket = (server) => {
       }
     });
 
-    socket.on("disconnect", () => {
-      console.log(`❌ User Disconnected: ${socket.id}`);
+    socket.on("disconnect", (reason) => {
+      console.log(`❌ User Disconnected: ${socket.id} because of ${reason}`);
     });
   });
 
