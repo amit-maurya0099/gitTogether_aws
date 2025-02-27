@@ -10,15 +10,16 @@ const getSecureRoomId=(userId,targetUserId)=>{
 const initializeSocket=(server)=>{
     const io=socket(server,{
       cors: {
-        origin: ["http://localhost:5173", "http://51.21.2.211"],
+        origin: ["http://localhost:5173", "http://51.21.2.211","http://51.21.2.21:3000"],
         methods: ["GET", "POST"],
         credentials: true
       }
       
       });
+      console.log(io);
       
       io.on("connection",(socket)=>{
-          
+            console.log('user connected ')
         socket.on("joinChat",async({firstName,userId,targetUserId})=>{
           const roomId=getSecureRoomId(userId,targetUserId);
           socket.join(roomId);
