@@ -9,9 +9,11 @@ const getSecureRoomId=(userId,targetUserId)=>{
 
 const initializeSocket=(server)=>{
     const io=socket(server,{
-        cors:{
-          origin:["http://localhost:5173","http://51.21.2.211"],
-        }
+      cors: {
+        origin: ["http://localhost:5173", "http://51.21.2.211"],
+        methods: ["GET", "POST"],
+        credentials: true
+      }
       
       });
       
