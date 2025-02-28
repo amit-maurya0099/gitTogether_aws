@@ -12,7 +12,7 @@ const getSecureRoomId = (userId, targetUserId) => {
 const initializeSocket = (server) => {
   const io = socketIo(server, {
     cors: {
-      origin: "*", 
+      origin: "http://51.21.2.211", 
       methods: ["GET", "POST"],
       credentials: true,
     },
