@@ -12,17 +12,17 @@ const getSecureRoomId = (userId, targetUserId) => {
 const initializeSocket = (server) => {
   const io = socketIo(server, {
     cors: {
-      origin: "*", // Allow all origins for testing (Restrict this in production)
+      origin: "*", 
       methods: ["GET", "POST"],
       credentials: true,
     },
-    transports: ["websocket", "polling"], // Ensures proper connection
+    transports: ["websocket", "polling"], 
   });
 
-  console.log("✅ WebSocket Server Initialized");
+  console.log(" WebSocket Server Initialized");
 
   io.on("connection_error", (err) => {
-    console.error("❌ WebSocket Connection Error:", err.message);
+    console.error(" WebSocket Connection Error:", err.message);
   });
 
   io.on("connection", (socket) => {
