@@ -6,10 +6,14 @@ export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
-    
-
   ],
   server:{
     host:true
-  }
+  },
+  build: {
+    minify: 'terser', 
+  },
+  optimizeDeps: {
+    exclude: ["lottie-web"],
+  },
 })
