@@ -1,4 +1,4 @@
-import Lottie from 'lottie-react'
+import Lottie from 'react-lottie'
 import React from 'react'
 import homeAnimation from "../Animations/homeAnimation.json"
 import { useSelector } from 'react-redux'
@@ -7,6 +7,12 @@ import Loader from './Loader'
 const HomeCard = ({setCurrentView}) => {
   const {isAuthenticated}=useSelector((store)=>store.user);
   const navigate=useNavigate();
+
+  const defaultOptions={
+    loop: true,
+    autoplay: true, 
+    animationData:homeAnimation ,
+}
   return (
     <div className='absolute mt-6 md:mt-4 p-6 bg-gray-900 rounded-3xl w-[90%] md:w-[40%] text-white'>
     <div className=" flex items-center justify-center ">
@@ -23,7 +29,7 @@ const HomeCard = ({setCurrentView}) => {
 
    
     <div className="w-80 mx-auto">
-      <Lottie animationData={homeAnimation} loop={true} width={200} height={200} />
+      <Lottie options={defaultOptions}  width={300} height={300} />
     </div>
 
    

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Lottie from "lottie-react";
+import Lottie from "react-lottie";
 import ChatLandingAnimation from "../Animations/chatLandingAnimation.json"
 import { useSelector } from 'react-redux';
 
@@ -21,10 +21,16 @@ const LandingChatComponent = () => {
             return { greeting: `Good Night! ${user?.firstName}`, messgae: "Have a chat before you call it a day" };
         }
     };
+    const defaultOptions={
+        loop: true,
+        autoplay: true, 
+        animationData:ChatLandingAnimation ,
+    }
 
     useEffect(() => {
         setGreetings(getGreetingMessage());
     }, [])
+
 
     return (
         <div className='w-[50%] flex flex-col gap-2 '>
@@ -36,7 +42,7 @@ const LandingChatComponent = () => {
 
                  </div>
                
-            <Lottie animationData={ChatLandingAnimation} width={100} height={200} />
+            <Lottie options={defaultOptions} width={400} height={400} />
 
         </div>
     )
