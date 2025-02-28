@@ -10,10 +10,5 @@ export default defineConfig({
   server:{
     host:true
   },
-  build: {
-    minify: 'terser', 
-  },
-  optimizeDeps: {
-    include: ["lottie-web"],
-  },
+ 
 })
