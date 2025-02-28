@@ -14,6 +14,6 @@ export default defineConfig({
     minify: 'terser', 
   },
   optimizeDeps: {
-    exclude: ["lottie-web"],
+    include: ["lottie-web"],
   },
 })
