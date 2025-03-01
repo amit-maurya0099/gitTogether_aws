@@ -35,7 +35,7 @@ const fetchRequests=async()=>{
  },[])   
 
 
-   // if(!requests || requests.length ===0) return <div className='absolute top-[40%] left-[30%] md:left-[45%] text-xl text-white '>No Request found</div>;
+ 
   
 
   return (
@@ -58,7 +58,7 @@ const fetchRequests=async()=>{
         
            {requests?.map((request)=><RequestCard request={request} key={request._id}/>)}
          </div></>:
-         <div className=' h-full flex justify-center items-center'>No request found</div>}
+         <div className=' h-full flex justify-center items-center text-white'>No request found</div>}
        
          
 

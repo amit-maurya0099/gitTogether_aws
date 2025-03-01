@@ -53,13 +53,13 @@ const Login = ({setCurrentView}) => {
       <form className='flex flex-col px-4 justify-center items-center gap-4' onSubmit={handleLogin}>
        <div className='w-[90%]' >
         <fieldset className="fieldset">
-        <legend className="fieldset-legend text-lg">Email</legend>
+        <legend className="fieldset-legend text-lg text-white">Email</legend>
         <input type="text" name="email" value={user.email} className="input w-full bg-gray-600" placeholder="Enter your email" onChange={loginDataChange}/>
         </fieldset>
        </div>
        <div className='w-[90%]' >
         <fieldset className="fieldset">
-        <legend className="fieldset-legend text-lg">Password</legend> 
+        <legend className="fieldset-legend text-lg text-white">Password</legend> 
         <input type="text" className="input w-full bg-gray-600" name='password' value={user.password} placeholder="Enter your password" onChange={loginDataChange} />
         </fieldset>
        </div>
